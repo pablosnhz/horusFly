@@ -1,4 +1,4 @@
-<nav class="navbar fixed-top navbar-light bg-light">
+<nav class="navbar fixed navbar-light">
   <div class="container-fluid justify-content-around">
     <div class="navbar-brand">
       <small class="navbar-brand fs-4">HORUS FLY</small>
@@ -18,8 +18,26 @@
           <li><a class="dropdown-item" href="#">Something else here</a></li>
         </ul>
       </li>
-      <li>Register now!</li>
-      <li>Login</li>
+      <li (click)="gotToRegister()">Register now!</li>
+      <li (click)="gotToLogin()">Login</li>
     </ul>
+  </div>
+  <div class="d-flex justify-content-center w-100 mt-3 gap-5">
+    <div class="text-center">
+      <img src="https://img.icons8.com/?size=100&id=2487&format=png&color=000000" class="img-fluid icon-size">
+      <p>Airplane</p>
+    </div>
+    <div class="text-center">
+      <img src="https://img.icons8.com/?size=100&id=561&format=png&color=000000" class="img-fluid icon-size">
+      <p>Bed</p>
+    </div>
+    <div class="text-center">
+      <img src="https://img.icons8.com/?size=100&id=TgMuTN1aeDv7&format=png&color=000000" class="img-fluid icon-size">
+      <p>Suitcase</p>
+    </div>
+    <div class="text-center">
+      <img src="https://img.icons8.com/?size=100&id=31799&format=png&color=000000" class="img-fluid icon-size">
+      <p>Vacation</p>
+    </div>
   </div>
 </nav>

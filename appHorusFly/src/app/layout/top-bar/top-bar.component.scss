@@ -1,0 +1,16 @@
+.icon-size {
+  width: 60px;
+  height: auto;
+}
+
+@media (max-width: 768px) {
+  .icon-size {
+    width: 45px;
+  }
+}
+
+@media (max-width: 480px) {
+  .icon-size {
+    width: 35px;
+  }
+}
