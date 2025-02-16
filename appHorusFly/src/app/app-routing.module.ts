@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MainLayoutComponent } from './layout/main-layout/main-layout.component';
+import { QandaComponent } from './routes/components/qanda/qanda.component';
 
 const routes: Routes = [
   {
@@ -10,13 +11,27 @@ const routes: Routes = [
       {
         path: '',
         loadChildren: () =>
-        import('./shared/shared.module').then( m => m.SharedModule )
+        import('./routes/components/home/home.module').then( h => h.HomeModule )
       },
-      // aca van a ir las secciones del topBar las cuales van a ser componentes dinamicos para el contenido
-      // cuatro secciones con icon y con el routerLinkActive
-        // [routerLink]="['/']"
-        // routerLinkActive="underline underline-offset-8"
-        // [routerLinkActiveOptions]="{exact: true}"
+      {
+        path: 'flights',
+        loadChildren: () =>
+        import('./routes/components/flights/flights.module').then( f => f.FlightsModule )
+      },
+      {
+        path: 'lodging',
+        loadChildren: () =>
+        import('./routes/components/lodging/lodging.module').then( l => l.LodgingModule )
+      },
+      {
+        path: 'packages',
+        loadChildren: () =>
+        import('./routes/components/packages/packages.module').then( p => p.PackagesModule )
+      },
+      {
+        path: 'qa',
+        component: QandaComponent
+      }
     ]
   },
   {

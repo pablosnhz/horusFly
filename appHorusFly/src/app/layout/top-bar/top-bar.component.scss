@@ -1,3 +1,17 @@
+.active-link {
+  text-decoration: underline;
+  text-underline-offset: 8px;
+  text-decoration-thickness: 3px;
+  text-decoration-color: orange;
+  font-weight: bold;
+  color: orange !important;
+}
+
+.active-link img {
+  filter: brightness(0) saturate(100%) invert(39%) sepia(94%) saturate(800%) hue-rotate(5deg) brightness(103%) contrast(105%);
+}
+
+
 .icon-size {
   width: 60px;
   height: auto;
