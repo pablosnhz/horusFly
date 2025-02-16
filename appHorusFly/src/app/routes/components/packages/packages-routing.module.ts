@@ -1,13 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { DestinationComponent } from './pages/destination/destination.component';
+import { PackagesComponent } from './packages.component';
 
 const routes: Routes = [
-  // { path: '', component: DestinationComponent },
+  {
+    path: '',
+    component: PackagesComponent
+  }
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class SharedRoutingModule { }
+export class PackagesRoutingModule { }

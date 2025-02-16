@@ -1,0 +1,14 @@
+<button class="chatbot-button" (click)="toggleChat()">
+  <img src="https://img.icons8.com/?size=100&id=7859&format=png&color=000000" alt="bot">
+</button>
+
+<div class="chatbot-container" *ngIf="chatVisible">
+  <div class="chatbot-header">
+    <span>Chatbot</span>
+    <button class="close-btn" (click)="toggleChat()">✖</button>
+  </div>
+  <div class="chatbot-body">
+    <p>Hola, en que te ayudo?</p>
+    <input type="text" placeholder="Escribe tu mensaje..." />
+  </div>
+</div>
