@@ -9,8 +9,6 @@ import { AccommodationsModule } from '../Accommodations/accommodations.module';
   imports: [
     CommonModule,
     PackagesRoutingModule,
-
-    AccommodationsModule
   ]
 })
 export class PackagesModule { }
