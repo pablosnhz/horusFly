@@ -1,18 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AccommodationsRoutingModule } from './accommodations-routing.module';
-import { PackagesSliderComponent } from '../packages/packages-slider/packages-slider.component';
-
-
+import { SharedModule } from 'src/app/shared/shared.module';
+import { accommodationsComponent } from './accommodations.component';
+import { AccomodationSliderComponent } from './accomodation-slider/accomodation-slider.component';
 
 @NgModule({
-  declarations: [PackagesSliderComponent],
+  declarations: [
+    AccomodationSliderComponent,
+    accommodationsComponent
+  ],
   imports: [
     CommonModule,
-    AccommodationsRoutingModule
-  ],
-  exports: [
-    PackagesSliderComponent
+    AccommodationsRoutingModule,
+
+    SharedModule
   ]
 })
 export class AccommodationsModule { }
