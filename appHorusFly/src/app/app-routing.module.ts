@@ -11,17 +11,12 @@ const routes: Routes = [
       {
         path: '',
         loadChildren: () =>
-        import('./routes/components/home/home.module').then( h => h.HomeModule )
-      },
-      {
-        path: 'flights',
-        loadChildren: () =>
         import('./routes/components/flights/flights.module').then( f => f.FlightsModule )
       },
       {
-        path: 'lodging',
+        path: 'accommodation',
         loadChildren: () =>
-        import('./routes/components/lodging/lodging.module').then( l => l.LodgingModule )
+        import('./routes/components/Accommodations/accommodations.module').then( a => a.AccommodationsModule )
       },
       {
         path: 'packages',

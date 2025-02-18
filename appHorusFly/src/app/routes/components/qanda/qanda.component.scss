@@ -1,0 +1,16 @@
+.custom-width {
+  max-width: 700px;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .custom-width {
+      max-width: 90%;
+  }
+}
+
+@media (max-width: 480px) {
+  .custom-width {
+      max-width: 95%;
+  }
+}
