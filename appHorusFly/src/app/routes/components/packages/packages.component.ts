@@ -6,8 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./packages.component.scss']
 })
 export class PackagesComponent {
-  constructor(){
-    console.log(`Accediendo a packages component`);
 
-  }
 }

@@ -1,0 +1,105 @@
+// .form-holder {
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   text-align: center;
+//   padding: 20px;
+// }
+
+// .form-content {
+//   width: 100%;
+//   max-width: 1200px;
+//   padding: 30px;
+// }
+
+// .form-items {
+//   border: 1px solid #15273327;
+//   padding: 20px;
+//   display: flex;
+//   flex-wrap: wrap;
+//   border-radius: 10px;
+//   text-align: left;
+//   transition: all 0.4s ease;
+// }
+
+// @media (max-width: 768px) {
+//   .form-items {
+//     text-align: center;
+//   }
+// }
+
+
+
+
+
+
+
+// @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700;900&display=swap');
+
+*, body {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+}
+
+.form-holder .form-content {
+  position: relative;
+  text-align: center;
+  display: flex;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  align-items: center;
+  padding: 30px;
+}
+
+@media (max-width: 992px) {
+  .form-content .form-items {
+    width: 100%;
+  }
+}
+
+.responsive-text {
+  font-size: clamp(12px, 2vw, 18px);
+}
+
+@media (max-width: 991px) {
+  .order-md-3 {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .responsive-text {
+    font-size: 14px;
+  }
+}
+@media (min-width: 1024px) {
+  .responsive-text {
+    font-size: 18px;
+  }
+}
+
+
+.form-content .form-items {
+  border: 1px solid #15273327;
+  width: 50%;
+  border-radius: 10px;
+  text-align: left;
+  transition: all 0.4s ease;
+}
+
+@media (max-width: 991px) {
+  .form-content .form-items {
+    width: 80%;
+  }
+}
+
+@media (max-width: 767px) {
+  .form-content .form-items {
+    width: 100%;
+  }
+}
