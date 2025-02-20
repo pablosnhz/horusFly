@@ -1,0 +1,53 @@
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-md-7 col-12">
+      <swiper-container class="mySwiper" space-between="30" pagination="true" pagination-clickable="true">
+        <swiper-slide *ngFor="let item of imagenes">
+          <img [src]="item"
+            alt="" class="img-fluid">
+        </swiper-slide>
+      </swiper-container>
+    </div>
+
+    <div class="col-md-5 col-12 ">
+      <div class="box mt-3">
+        <p>Combinación de destinos/vuelos</p>
+        <h3>Combinación de hotel/vuelos</h3>
+        <br>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta culpa blanditiis magnam ab voluptates. Quibusdam repellendus fugiat asperiores, aspernatur harum veritatis repellat fugit nobis animi earum, culpa aut nulla in. Reprehenderit tempora esse et iure animi saepe sunt, ducimus eveniet unde distinctio quam magni quia ipsum ab omnis assumenda nulla corporis dolorum sit dicta quasi rerum eaque! Assumenda, accusantium possimus?</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="container mt-3">
+    <p class="fs-2">Opciones/ variantes de precios segun la cantidad de dias</p>
+    <div class="row">
+      <div class="col-md-8 col-12">
+        <div class="card mt-3">
+          <div class="card-header">
+            Variante 1
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">Special title treatment</h5>
+            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+            <a href="#" class="btn btn-primary" routerLink="/details/checkout">Coordinar viaje</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 col-12">
+        <div class="card mt-3">
+          <div class="card-header">
+            Tenes problemas para elegir?
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">Llama:</h5>
+            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+            <a href="#" class="btn btn-primary" routerLink="/qa">Go somewhere</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+

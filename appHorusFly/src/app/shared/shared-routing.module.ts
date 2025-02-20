@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { DestinationComponent } from './pages/destination/destination.component';
+import { DetailsComponent } from './pages/details/details.component';
+import { CheckoutComponent } from './pages/checkout/checkout.component';
 
 const routes: Routes = [
-  // { path: '', component: DestinationComponent },
+  { path: '', component: DetailsComponent },
+  { path: 'checkout', component: CheckoutComponent }
 ];
 
 @NgModule({
