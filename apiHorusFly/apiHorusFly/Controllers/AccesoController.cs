@@ -26,11 +26,16 @@ namespace apiHorusFly.Controllers
         [Route("Register")]
         public async Task<IActionResult> Register(UsuarioDto objeto)
         {
+            var roleUsuario = await _dbHorusFlyContext.Roles.FirstOrDefaultAsync(r => r.RoleName == "usuario");
+            if (roleUsuario == null)
+                return BadRequest(new { message = "error" });
+
             var modelUsuario = new Usuario
             {
                 Name = objeto.name,
                 Email = objeto.email,
-                Password = _utilidades.encriptarSHA256(objeto.password)
+                Password = _utilidades.encriptarSHA256(objeto.password),
+                RoleId = roleUsuario.RoleId
             };
 
             await _dbHorusFlyContext.Usuarios.AddAsync(modelUsuario);
