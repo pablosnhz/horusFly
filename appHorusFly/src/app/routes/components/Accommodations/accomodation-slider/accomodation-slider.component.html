@@ -1,9 +1,39 @@
+<!-- <h2>{{ data | json }}</h2> -->
+
+<div *ngFor="let hotels of data" class="container mt-4 px-4">
+  <div class="row border-lg background-color">
+    <div class="col-lg-4 col-md-12 p-sm-0 border-lg">
+      <img [src]="hotels.image" alt="Imagen del hotel" />
+    </div>
+    <div class="col-lg-4 col-md-12 px-3 p-md-2 border-lg border">
+      <h5 class="fs-5 fs-md-6 mt-2">{{ hotels.name }}</h5>
+      <p class="fs-6 fs-md-7">{{ hotels.city }}</p>
+      <p class="fs-6 fs-md-7">{{ hotels.scores }} {{ hotels.rating }}</p>
+    </div>
+
+    <div class="col-lg-4 col-md-12 px-3 p-md-2 border-lg rounded-end border">
+      <h5 class="fs-5 fs-md-6 mt-1">{{ hotels.includes }}</h5>
+      <p class="fw-bold fs-4 fs-md-5">
+        {{ hotels.price | currency }}
+        <button class="btn btn-secondary btn-sm" type="button" routerLink="/details">
+          Detalles
+        </button>
+      </p>
+
+      <p class="fs-6 fs-md-7 fw-light">*{{ hotels.includes }}</p>
+    </div>
+  </div>
+</div>
+
+<!--
+
 <div class="container mt-4 px-4">
   <div class="row border-lg background-color">
     <div class="col-lg-4 col-md-12 p-sm-0 border-lg">
       <img
         src="https://img.freepik.com/free-photo/bangkok-thailand-august-12-2016-beautiful-luxury-living-room_1203-2867.jpg?t=st=1739910707~exp=1739914307~hmac=610b8c00ccd87814e3690a870225293e6c3ae54cbd32a763babe78a6f8c2624c&w=1380"
-        alt="Imagen del hotel">
+        alt="Imagen del hotel"
+      />
     </div>
     <div class="col-lg-4 col-md-12 px-3 p-md-2 border-lg border">
       <h5 class="fs-5 fs-md-6 mt-2">Nombre del hotel</h5>
@@ -18,4 +48,4 @@
       <p class="fs-6 fs-md-7 fw-light">*incluye incluye</p>
     </div>
   </div>
-</div>
+</div> -->

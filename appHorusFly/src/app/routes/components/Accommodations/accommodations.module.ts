@@ -6,15 +6,7 @@ import { accommodationsComponent } from './accommodations.component';
 import { AccomodationSliderComponent } from './accomodation-slider/accomodation-slider.component';
 
 @NgModule({
-  declarations: [
-    AccomodationSliderComponent,
-    accommodationsComponent
-  ],
-  imports: [
-    CommonModule,
-    AccommodationsRoutingModule,
-
-    SharedModule
-  ]
+  declarations: [AccomodationSliderComponent, accommodationsComponent],
+  imports: [CommonModule, AccommodationsRoutingModule, SharedModule],
 })
-export class AccommodationsModule { }
+export class AccommodationsModule {}
