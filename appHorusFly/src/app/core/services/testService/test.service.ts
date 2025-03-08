@@ -9,7 +9,9 @@ import { Observable } from 'rxjs';
 export class TestService {
   constructor(private http: HttpClient) {}
 
+  infoHotel$ = this.getInfo();
+
   getInfo(): Observable<any> {
-    return this.http.get<any>(`${environment.url}api/hotel/list`);
+    return this.http.get<any>(`${environment.apiEndpoints.url}api/hotel/list`);
   }
 }

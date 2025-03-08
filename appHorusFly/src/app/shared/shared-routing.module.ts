@@ -5,11 +5,11 @@ import { CheckoutComponent } from './pages/checkout/checkout.component';
 
 const routes: Routes = [
   { path: '', component: DetailsComponent },
-  { path: 'checkout', component: CheckoutComponent }
+  { path: 'checkout', component: CheckoutComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class SharedRoutingModule { }
+export class SharedRoutingModule {}

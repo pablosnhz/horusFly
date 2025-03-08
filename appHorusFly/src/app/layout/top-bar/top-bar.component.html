@@ -2,62 +2,109 @@
   <div class="container-fluid justify-content-around">
     <div class="navbar-brand" routerLink="/" role="button">
       <small class="navbar-brand fs-4">HORUS FLY</small>
-      <img src="https://img.icons8.com/?size=100&id=6eo3EprZFWZ3&format=png&color=000000" alt="logo" width="24" height="24" class="mb-2">
+      <img
+        src="https://img.icons8.com/?size=100&id=6eo3EprZFWZ3&format=png&color=000000"
+        alt="logo"
+        width="24"
+        height="24"
+        class="mb-2"
+      />
     </div>
     <ul class="d-flex gap-3 pointer list-unstyled mt-3" role="button">
       <li>Hora</li>
       <li>Vuelos</li>
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <a
+          class="nav-link dropdown-toggle"
+          href="#"
+          role="button"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
           Hoteles
         </a>
         <ul class="dropdown-menu">
           <li><a class="dropdown-item" href="#">Action</a></li>
           <li><a class="dropdown-item" href="#">Another action</a></li>
-          <li><hr class="dropdown-divider"></li>
+          <li><hr class="dropdown-divider" /></li>
           <li><a class="dropdown-item" href="#">Something else here</a></li>
         </ul>
       </li>
-      <li routerLink="/login/register">Register now!</li>
-      <li routerLink="/login">Login</li>
+      <li routerLink="/auth/register">Register now!</li>
+      <li routerLink="/auth/login">Login</li>
+      <li>
+        <button
+          (click)="logOut()"
+          style="background: none; border: none; padding: 0; cursor: pointer"
+        >
+          <img
+            src="https://img.icons8.com/?size=100&id=BdksXmxLaK8r&format=png&color=000000"
+            width="26"
+            height="26"
+            alt="exit"
+          />
+        </button>
+      </li>
     </ul>
   </div>
-  <div class="d-flex justify-content-center w-100 mt-3 gap-4 gap-sm-5 gap-md-5 gap-lg-5" *ngIf="!detailRoute">
-
-    <div  class="text-center"
-          role="button"
-          [routerLink]="['/accommodation']"
-          routerLinkActive="active-link"
-          [routerLinkActiveOptions]="{exact: true}"
+  <div
+    class="d-flex justify-content-center w-100 mt-3 gap-4 gap-sm-5 gap-md-5 gap-lg-5"
+    *ngIf="!detailRoute"
+  >
+    <div
+      class="text-center"
+      role="button"
+      [routerLink]="['/accommodation']"
+      routerLinkActive="active-link"
+      [routerLinkActiveOptions]="{ exact: true }"
     >
-      <img src="https://img.icons8.com/?size=100&id=561&format=png&color=000000" class="img-fluid icon-size">
+      <img
+        src="https://img.icons8.com/?size=100&id=561&format=png&color=000000"
+        class="img-fluid icon-size"
+        alt="Acmodtin"
+      />
       <p>Acmodtin</p>
     </div>
-    <div  class="text-center"
-          role="button"
-          [routerLink]="['/']"
-          routerLinkActive="active-link"
-          [routerLinkActiveOptions]="{exact: true}"
+    <div
+      class="text-center"
+      role="button"
+      [routerLink]="['/']"
+      routerLinkActive="active-link"
+      [routerLinkActiveOptions]="{ exact: true }"
     >
-      <img src="https://img.icons8.com/?size=100&id=2487&format=png&color=000000" class="img-fluid icon-size">
+      <img
+        src="https://img.icons8.com/?size=100&id=2487&format=png&color=000000"
+        class="img-fluid icon-size"
+        alt="Flights"
+      />
       <p>Flights</p>
     </div>
-    <div class="text-center"
-         role="button"
-         [routerLink]="['/packages']"
-         routerLinkActive="active-link"
-         [routerLinkActiveOptions]="{exact: true}"
+    <div
+      class="text-center"
+      role="button"
+      [routerLink]="['/packages']"
+      routerLinkActive="active-link"
+      [routerLinkActiveOptions]="{ exact: true }"
     >
-      <img src="https://img.icons8.com/?size=100&id=TgMuTN1aeDv7&format=png&color=000000" class="img-fluid icon-size">
+      <img
+        src="https://img.icons8.com/?size=100&id=TgMuTN1aeDv7&format=png&color=000000"
+        class="img-fluid icon-size"
+        alt="Packages"
+      />
       <p>Packages</p>
     </div>
-    <div class="text-center"
-         role="button"
-         [routerLink]="['/qa']"
-         routerLinkActive="active-link"
-         [routerLinkActiveOptions]="{exact: true}"
+    <div
+      class="text-center"
+      role="button"
+      [routerLink]="['/qa']"
+      routerLinkActive="active-link"
+      [routerLinkActiveOptions]="{ exact: true }"
     >
-      <img src="https://img.icons8.com/?size=100&id=5471&format=png&color=000000" class="img-fluid icon-size">
+      <img
+        src="https://img.icons8.com/?size=100&id=5471&format=png&color=000000"
+        class="img-fluid icon-size"
+        alt="Q&A"
+      />
       <p>Q&A</p>
     </div>
   </div>

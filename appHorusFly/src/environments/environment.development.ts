@@ -1,3 +1,7 @@
 export const environment = {
-  url: 'http://localhost:5118/',
+  production: false,
+  apiEndpoints: {
+    url: 'http://localhost:5118/',
+    urlAuth: 'http://localhost:5118/api/acceso',
+  },
 };

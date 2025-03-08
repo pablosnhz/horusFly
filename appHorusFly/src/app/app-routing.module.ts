@@ -11,39 +11,39 @@ const routes: Routes = [
       {
         path: '',
         loadChildren: () =>
-        import('./routes/components/flights/flights.module').then( f => f.FlightsModule )
+          import('./routes/components/flights/flights.module').then((f) => f.FlightsModule),
       },
       {
         path: 'accommodation',
         loadChildren: () =>
-        import('./routes/components/Accommodations/accommodations.module').then( a => a.AccommodationsModule )
+          import('./routes/components/Accommodations/accommodations.module').then(
+            (a) => a.AccommodationsModule,
+          ),
       },
       {
         path: 'packages',
         loadChildren: () =>
-        import('./routes/components/packages/packages.module').then( p => p.PackagesModule )
+          import('./routes/components/packages/packages.module').then((p) => p.PackagesModule),
       },
       {
         path: 'qa',
-        component: QandaComponent
+        component: QandaComponent,
       },
-      {
-        path: 'details',
-        loadChildren: () =>
-        import('./shared/shared.module').then( d => d.SharedModule )
-      }
-    ]
+    ],
   },
   {
-    path: 'login',
-    loadChildren: () => import('./routes/auth/pages/auth.module').then( x => x.AuthModule )
-  }
+    path: 'auth',
+    loadChildren: () => import('./routes/auth/pages/auth.module').then((x) => x.AuthModule),
+  },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {
-    scrollPositionRestoration: 'top'
-  })],
-  exports: [RouterModule]
+  imports: [
+    RouterModule.forRoot(routes, {
+      scrollPositionRestoration: 'top',
+      bindToComponentInputs: true,
+    }),
+  ],
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
