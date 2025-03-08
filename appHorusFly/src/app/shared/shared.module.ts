@@ -10,20 +10,9 @@ import { CheckoutComponent } from './pages/checkout/checkout.component';
 register();
 
 @NgModule({
-  declarations: [
-    DestinationComponent,
-    ChatbotComponent,
-    DetailsComponent,
-    CheckoutComponent,
-  ],
-  imports: [
-    CommonModule,
-    SharedRoutingModule,
-  ],
-  exports: [
-    DestinationComponent,
-    ChatbotComponent,
-  ],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  declarations: [DestinationComponent, ChatbotComponent, DetailsComponent, CheckoutComponent],
+  imports: [CommonModule, SharedRoutingModule],
+  exports: [DestinationComponent, ChatbotComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class SharedModule { }
+export class SharedModule {}

@@ -8,16 +8,21 @@
     <div class="col-lg-4 col-md-12 px-3 p-md-2 border-lg border">
       <h5 class="fs-5 fs-md-6 mt-2">{{ hotels.name }}</h5>
       <p class="fs-6 fs-md-7">{{ hotels.city }}</p>
-      <p class="fs-6 fs-md-7">{{ hotels.scores }} {{ hotels.rating }}</p>
+      <div class="d-flex align-items-center gap-2">
+        <p class="fs-6 fs-md-7 m-0 btn btn-success">{{ hotels.scores }}</p>
+        <!-- <p class="m-0">{{ hotels.rating }}</p> -->
+        <p class="mb-1" [appRating]="hotels.rating"></p>
+      </div>
     </div>
 
     <div class="col-lg-4 col-md-12 px-3 p-md-2 border-lg rounded-end border">
-      <h5 class="fs-5 fs-md-6 mt-1">{{ hotels.includes }}</h5>
+      <p class="fs-5 fs-md-6 mt-1">precio por noche</p>
       <p class="fw-bold fs-4 fs-md-5">
         {{ hotels.price | currency }}
         <button class="btn btn-secondary btn-sm" type="button" routerLink="/details">
           Detalles
         </button>
+        <!-- <button (click)="navigateToProductDetails()">hola</button> -->
       </p>
 
       <p class="fs-6 fs-md-7 fw-light">*{{ hotels.includes }}</p>

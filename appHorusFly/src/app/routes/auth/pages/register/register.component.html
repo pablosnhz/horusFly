@@ -1,8 +1,14 @@
-<nav class="navbar fixed navbar-light ">
+<nav class="navbar fixed navbar-light">
   <div class="container-fluid justify-content-around">
     <div class="navbar-brand">
       <small class="navbar-brand fs-4" routerLink="/" role="button">HORUS FLY</small>
-      <img src="https://img.icons8.com/?size=100&id=6eo3EprZFWZ3&format=png&color=000000" alt="logo" width="24" height="24" class="mb-2">
+      <img
+        src="https://img.icons8.com/?size=100&id=6eo3EprZFWZ3&format=png&color=000000"
+        alt="logo"
+        width="24"
+        height="24"
+        class="mb-2"
+      />
     </div>
     <ul class="d-flex gap-3 pointer list-unstyled mt-3" role="button">
       <li>Help</li>
@@ -16,20 +22,30 @@
   <div class="login-wrapper">
     <div class="login-container text-center">
       <h3 class="mb-4">Registrarse</h3>
-      <form>
+      <form [formGroup]="form" (ngSubmit)="submitRegister()">
         <div class="mb-3">
-          <input type="email" class="form-control" placeholder="Username" required>
+          <input class="form-control" formControlName="name" placeholder="Name" required />
         </div>
         <div class="mb-3">
-          <input type="email" class="form-control" placeholder="Correo" required>
+          <input
+            type="email"
+            class="form-control"
+            formControlName="email"
+            placeholder="Email"
+            required
+          />
         </div>
         <div class="mb-3">
-          <input type="password" class="form-control" placeholder="Clave" required>
+          <input
+            type="password"
+            class="form-control"
+            formControlName="password"
+            placeholder="Password"
+            required
+          />
         </div>
         <button class="btn btn-primary w-100">Crear cuenta</button>
       </form>
     </div>
   </div>
 </body>
-
-

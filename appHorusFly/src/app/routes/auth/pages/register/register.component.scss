@@ -1,11 +1,11 @@
 .background-img {
-  background-image: url("https://images.unsplash.com/photo-1715173404987-b23d92259395?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+  background-image: url('./../../../../../assets/register.webp');
   background-size: cover;
   background-position: center;
   height: 100vh;
   position: fixed;
   width: 100%;
-  filter: blur(1.5px);
+  filter: blur(4.5px);
 }
 
 body {
