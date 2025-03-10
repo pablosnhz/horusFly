@@ -42,6 +42,7 @@
           />
         </div>
         <button class="btn btn-primary w-100 mb-2">Ingresar</button>
+        <div *ngIf="errorMessage" class="text-danger text-sm mt-1">{{ errorMessage }}</div>
       </form>
       <a routerLink="/auth/register">Register</a>
     </div>

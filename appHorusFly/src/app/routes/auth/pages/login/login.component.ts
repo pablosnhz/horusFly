@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Signal } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
@@ -10,6 +10,7 @@ import { AuthService } from 'src/app/core/services/auth/auth.service';
 })
 export class LoginComponent {
   form: FormGroup;
+  errorMessage = '';
 
   constructor(
     private router: Router,
@@ -23,18 +24,27 @@ export class LoginComponent {
   }
 
   submitLogin(): void {
-    if (this.form.valid) {
-      const { email, password } = this.form.value;
+    if (!this.form.valid) {
+      this.errorMessage = 'completa todos los campos';
+      return;
+    }
 
-      this.authService.login(email, password).subscribe((response: any) => {
+    const { email, password } = this.form.value;
+    this.errorMessage = '';
+
+    this.authService.login(email, password).subscribe({
+      next: (response: any) => {
         if (response && response.isSuccess) {
-          console.log(`acceso correcto`);
+          // console.log(`acceso correcto`);
           sessionStorage.setItem('tokenFly', response.token);
           this.router.navigate(['/']);
         } else {
-          console.error('error en los datos');
+          this.errorMessage = 'correo o contraseña incorrectos';
         }
-      });
-    }
+      },
+      error: (error) => {
+        console.error('error en el login:', error);
+      },
+    });
   }
 }
