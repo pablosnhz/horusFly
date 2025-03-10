@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Signal } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
@@ -9,6 +9,8 @@ import { AuthService } from 'src/app/core/services/auth/auth.service';
   styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent {
+  errorMessage = '';
+
   form: FormGroup;
 
   constructor(
@@ -24,13 +26,20 @@ export class RegisterComponent {
   }
 
   submitRegister() {
-    if (this.form.valid) {
-      console.log(this.form.value);
+    if (!this.form.valid) {
+      // console.log(this.form.value);
+      this.errorMessage = 'completa todos los campos';
+      return;
     }
     const { name, email, password } = this.form.value;
-    this.authService.register(name, email, password).subscribe((response) => {
-      console.log(`Respuesta register`, response);
-      this.router.navigate(['/auth/login']);
+    this.authService.register(name, email, password).subscribe({
+      next: () => {
+        this.router.navigate(['/auth/login']);
+      },
+      error: (error) => {
+        this.errorMessage = 'email ya registrado, intenta con otro!';
+        console.error(error);
+      },
     });
   }
 }

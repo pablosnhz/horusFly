@@ -45,6 +45,9 @@
           />
         </div>
         <button class="btn btn-primary w-100">Crear cuenta</button>
+        <div *ngIf="errorMessage" class="text-danger text-sm mt-1">
+          {{ errorMessage }}
+        </div>
       </form>
     </div>
   </div>
