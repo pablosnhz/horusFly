@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { TestService } from 'src/app/core/services/testService/test.service';
+import { AccomodationsService } from '../../services/accomodations.service';
 
 @Component({
   selector: 'app-accomodation-slider',
@@ -10,7 +10,7 @@ import { TestService } from 'src/app/core/services/testService/test.service';
 })
 export class AccomodationSliderComponent implements OnInit {
   constructor(
-    private testService: TestService,
+    private acService: AccomodationsService,
     private router: Router,
   ) {}
 
@@ -26,7 +26,7 @@ export class AccomodationSliderComponent implements OnInit {
   // }
 
   obteniendoDatos() {
-    this.testService.getInfo().subscribe((datos) => {
+    this.acService.getInfo().subscribe((datos) => {
       this.data = datos.value;
       console.log(`obteniendo lista de hoteles`, datos.value);
     });

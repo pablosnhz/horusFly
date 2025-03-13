@@ -1,38 +1,57 @@
 <div class="imge pb-20 text-white">
   <h1 class="mb-4">What will be your next destination?</h1>
-  <p class="mb-6">Explore our range of cutting-edge products designed for your comfort and safety in your reservations.
+  <p class="mb-6">
+    Explore our range of cutting-edge products designed for your comfort and safety in your
+    reservations.
   </p>
 </div>
 
 <nav class="navbar fixed navbar-light">
   <div class="d-flex justify-content-center w-100 mt-3 gap-3 gap-sm-3 gap-md-3 gap-lg-3">
-    <div class="text-center" role="button">
-      <p>Seccion uno</p>
+    <div
+      class="text-center"
+      role="button"
+      tabindex="0"
+      (click)="sectionScroll('packages')"
+      (keydown.enter)="sectionScroll('packages')"
+      (keydown.space)="sectionScroll('packages')"
+    >
+      <p>Paquetes</p>
     </div>
-    <div class="text-center" role="button">
-      <p>Seccion dos</p>
+    <div
+      class="text-center"
+      role="button"
+      tabindex="0"
+      (click)="sectionScroll('fligts')"
+      (keydown.enter)="sectionScroll('fligts')"
+      (keydown.space)="sectionScroll('fligts')"
+    >
+      <p>Destinos Combinados</p>
     </div>
-    <div class="text-center" role="button">
-      <p>Seccion tres</p>
-    </div>
-    <div class="text-center" role="button">
-      <p>Seccion cuatro</p>
+    <div
+      class="text-center"
+      role="button"
+      tabindex="0"
+      (click)="sectionScroll('discount')"
+      (keydown.enter)="sectionScroll('discount')"
+      (keydown.space)="sectionScroll('discount')"
+    >
+      <p>Descuentos</p>
     </div>
   </div>
 </nav>
 
-<div class="mt-3">
-  <h3 class="d-flex justify-content-center">Destinos Combinados</h3>
-  <app-packages-slider></app-packages-slider>
-</div>
-
-<div class="mt-3">
+<div class="mt-3" id="packages">
   <h3 class="d-flex justify-content-center">Paquetes</h3>
   <app-packages-slider></app-packages-slider>
 </div>
 
-<div class="mt-3">
-  <h3 class="d-flex justify-content-center">Descuentos</h3>
-  <app-packages-slider></app-packages-slider>
+<div class="mt-5" id="fligts">
+  <h3 class="d-flex justify-content-center">Destinos Combinados</h3>
+  <app-flights-slider></app-flights-slider>
 </div>
 
+<div class="mt-5" id="discount">
+  <h3 class="d-flex justify-content-center">Descuentos</h3>
+  <app-discount-slider></app-discount-slider>
+</div>

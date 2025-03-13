@@ -1,6 +1,6 @@
 import { Component, Input, numberAttribute } from '@angular/core';
 import { Observable } from 'rxjs';
-import { TestService } from 'src/app/core/services/testService/test.service';
+import { AccomodationsService } from '../../services/accomodations.service';
 
 @Component({
   selector: 'app-detail-hotel',
@@ -10,7 +10,7 @@ import { TestService } from 'src/app/core/services/testService/test.service';
 export class DetailHotelComponent {
   @Input({ transform: numberAttribute }) id!: number;
 
-  constructor(private testService: TestService) {}
+  constructor(private acService: AccomodationsService) {}
 
-  infoHotel$: Observable<any> = this.testService.getInfo();
+  infoHotel$: Observable<any> = this.acService.getInfo();
 }
