@@ -1,13 +1,13 @@
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { PackagesService } from '../../services/packages.service';
 
 @Component({
-  selector: 'app-packages-slider',
-  templateUrl: './packages-slider.component.html',
-  styleUrls: ['./packages-slider.component.scss'],
+  selector: 'app-discount-slider',
+  templateUrl: './discount-slider.component.html',
+  styleUrls: ['./discount-slider.component.scss'],
 })
-export class PackagesSliderComponent implements OnInit {
-  datos: any;
+export class DiscountSliderComponent implements OnInit {
+  datosDiscount: any;
 
   constructor(private comboService: PackagesService) {}
 
@@ -17,7 +17,7 @@ export class PackagesSliderComponent implements OnInit {
 
   datosPackages() {
     this.comboService.obtenerPackages().subscribe((response) => {
-      this.datos = response.value;
+      this.datosDiscount = response.value;
       console.log(response);
     });
   }
