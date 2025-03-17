@@ -20,7 +20,6 @@
     "@angular/platform-browser-dynamic": "^16.2.0",
     "@angular/router": "^16.2.0",
     "@popperjs/core": "^2.11.6",
-    "@syncfusion/ej2-material-theme": "~28.2.11",
     "bootstrap": "^5.2.3",
     "rxjs": "~7.8.0",
     "swiper": "^11.2.4",
