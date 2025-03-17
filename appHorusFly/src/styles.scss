@@ -1,3 +1,4 @@
+@import '../node_modules/@syncfusion/ej2-material-theme/styles/material.css';
 $max-width: 1600px;
 // $primary: #151515;
 $primary: #ffffff;
@@ -22,3 +23,6 @@ body {
   color-scheme: light dark;
   // max-width: $max-width;
 }
+
+/* Importing Bootstrap SCSS file. */
+@import 'bootstrap/scss/bootstrap';

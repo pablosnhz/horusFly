@@ -16,7 +16,9 @@ export class TopBarComponent {
   ) {
     this.router.events.subscribe(() => {
       this.detailRoute =
-        this.router.url.includes('/details') || this.router.url.includes('/checkout');
+        this.router.url.includes('/details') ||
+        this.router.url.includes('/checkout') ||
+        this.router.url.startsWith('/accommodation/');
     });
   }
 

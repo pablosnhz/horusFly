@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit, Signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { AccomodationsService } from '../../services/accomodations.service';
 
@@ -9,21 +9,17 @@ import { AccomodationsService } from '../../services/accomodations.service';
   // changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AccomodationSliderComponent implements OnInit {
+  $loading: Signal<boolean> = this.acService.$loading;
+  data: any;
+
   constructor(
     private acService: AccomodationsService,
     private router: Router,
   ) {}
 
-  // @Input() data: any;
-  data: any;
-
   ngOnInit(): void {
     this.obteniendoDatos();
   }
-
-  // navigateToProductDetails(): void {
-  //   this.router.navigate(['accommodation', 'hotel', this.data.id]);
-  // }
 
   obteniendoDatos() {
     this.acService.getInfo().subscribe((datos) => {
