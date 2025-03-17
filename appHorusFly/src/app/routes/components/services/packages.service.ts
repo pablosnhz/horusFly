@@ -10,14 +10,12 @@ export class PackagesService {
   constructor(private http: HttpClient) {}
 
   obtenerPackages(): Observable<any> {
-    return this.http.get<any>(`${environment.apiEndpoints.url}api/combo/listcombo`);
+    return this.http.get<any>(`${environment.apiEndpoints.url}api/combo/packagescombo`);
   }
-
-  obtenerDiscount(): Observable<any> {
-    return this.http.get<any>(`${environment.apiEndpoints.url}api/combo/listcombo`);
-  }
-
   obtenerFlights(): Observable<any> {
-    return this.http.get<any>(`${environment.apiEndpoints.url}api/combo/listcombo`);
+    return this.http.get<any>(`${environment.apiEndpoints.url}api/combo/flycombo`);
+  }
+  obtenerDiscount(): Observable<any> {
+    return this.http.get<any>(`${environment.apiEndpoints.url}api/combo/discountcombo`);
   }
 }

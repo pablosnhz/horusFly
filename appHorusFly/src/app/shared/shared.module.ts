@@ -7,12 +7,19 @@ import { ChatbotComponent } from './pages/chatbot/chatbot.component';
 import { DetailsComponent } from './pages/details/details.component';
 import { register } from 'swiper/element/bundle';
 import { CheckoutComponent } from './pages/checkout/checkout.component';
+import { SpinnerComponent } from './pages/spinner/spinner.component';
 register();
 
 @NgModule({
-  declarations: [DestinationComponent, ChatbotComponent, DetailsComponent, CheckoutComponent],
+  declarations: [
+    DestinationComponent,
+    ChatbotComponent,
+    DetailsComponent,
+    CheckoutComponent,
+    SpinnerComponent,
+  ],
   imports: [CommonModule, SharedRoutingModule],
-  exports: [DestinationComponent, ChatbotComponent],
+  exports: [DestinationComponent, ChatbotComponent, SpinnerComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class SharedModule {}
