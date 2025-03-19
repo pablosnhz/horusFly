@@ -10,42 +10,32 @@
         class="mb-2"
       />
     </div>
-    <ul class="d-flex gap-3 pointer list-unstyled mt-3" role="button">
-      <li>Hora</li>
-      <li>Vuelos</li>
-      <li class="nav-item dropdown">
-        <a
-          class="nav-link dropdown-toggle"
-          href="#"
-          role="button"
-          data-bs-toggle="dropdown"
-          aria-expanded="false"
-        >
-          Hoteles
-        </a>
-        <ul class="dropdown-menu">
-          <li><a class="dropdown-item" href="#">Action</a></li>
-          <li><a class="dropdown-item" href="#">Another action</a></li>
-          <li><hr class="dropdown-divider" /></li>
-          <li><a class="dropdown-item" href="#">Something else here</a></li>
-        </ul>
-      </li>
+    <ul *ngIf="!$user()" class="d-flex gap-3 pointer list-unstyled mt-3" role="button">
       <li routerLink="/auth/register">Register now!</li>
       <li routerLink="/auth/login">Login</li>
-      <li>
-        <button
-          (click)="logOut()"
-          style="background: none; border: none; padding: 0; cursor: pointer"
-        >
-          <img
-            src="https://img.icons8.com/?size=100&id=BdksXmxLaK8r&format=png&color=000000"
-            width="26"
-            height="26"
-            alt="exit"
-          />
-        </button>
-      </li>
     </ul>
+    <div *ngIf="$user()" class="d-flex gap-2">
+      <p class="h5 mt-1" role="button">Bienvenido {{ $userName() }}</p>
+      <a [routerLink]="['/auth/profile']">
+        <img
+          src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
+          class="img-fluid"
+          style="width: 32px; height: 32px"
+          alt="profile"
+        />
+      </a>
+      <button
+        (click)="logout()"
+        style="background: none; border: none; padding: 0; cursor: pointer"
+      >
+        <img
+          src="https://img.icons8.com/?size=100&id=BdksXmxLaK8r&format=png&color=000000"
+          width="26"
+          height="26"
+          alt="exit"
+        />
+      </button>
+    </div>
   </div>
   <div
     class="d-flex justify-content-center w-100 mt-3 gap-4 gap-sm-5 gap-md-5 gap-lg-5"

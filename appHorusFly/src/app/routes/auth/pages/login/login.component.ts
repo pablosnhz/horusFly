@@ -35,7 +35,6 @@ export class LoginComponent {
     this.authService.login(email, password).subscribe({
       next: (response: any) => {
         if (response && response.isSuccess) {
-          // console.log(`acceso correcto`);
           sessionStorage.setItem('tokenFly', response.token);
           this.router.navigate(['/']);
         } else {

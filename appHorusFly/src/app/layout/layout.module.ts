@@ -8,17 +8,8 @@ import { RouterModule, RouterOutlet } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
-  declarations: [
-    MainLayoutComponent,
-    TopBarComponent,
-    FooterComponent,
-  ],
-  imports: [
-    CommonModule,
-    RouterOutlet,
-    RouterModule,
-
-    SharedModule,
-  ]
+  declarations: [MainLayoutComponent, TopBarComponent, FooterComponent],
+  imports: [CommonModule, RouterOutlet, RouterModule, SharedModule],
+  exports: [TopBarComponent],
 })
-export class LayoutModule { }
+export class LayoutModule {}
