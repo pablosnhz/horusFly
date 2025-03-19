@@ -27,7 +27,6 @@ export class RegisterComponent {
 
   submitRegister() {
     if (!this.form.valid) {
-      // console.log(this.form.value);
       this.errorMessage = 'completa todos los campos';
       return;
     }

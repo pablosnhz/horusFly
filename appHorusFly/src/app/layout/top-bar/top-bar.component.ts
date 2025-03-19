@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, Signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
 
@@ -7,8 +7,10 @@ import { AuthService } from 'src/app/core/services/auth/auth.service';
   templateUrl: './top-bar.component.html',
   styleUrls: ['./top-bar.component.scss'],
 })
-export class TopBarComponent {
+export class TopBarComponent implements OnInit {
   detailRoute = false;
+  $user: Signal<null> = this.authService.$user;
+  $userName: Signal<null> = this.authService.$userName;
 
   constructor(
     private router: Router,
@@ -18,12 +20,17 @@ export class TopBarComponent {
       this.detailRoute =
         this.router.url.includes('/details') ||
         this.router.url.includes('/checkout') ||
-        this.router.url.startsWith('/accommodation/');
+        this.router.url.startsWith('/accommodation/') ||
+        this.router.url.includes('auth/profile');
     });
   }
+  ngOnInit(): void {
+    if (this.authService.$user()) {
+      this.authService.getUser();
+    }
+  }
 
-  logOut() {
-    sessionStorage.removeItem('tokenFly');
-    this.router.navigate(['/']);
+  logout() {
+    this.authService.logout();
   }
 }
