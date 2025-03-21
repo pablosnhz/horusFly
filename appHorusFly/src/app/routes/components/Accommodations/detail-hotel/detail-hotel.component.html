@@ -1,7 +1,3 @@
-<!-- <div *ngIf="infoHotel$ | async as hotel">
-  <h2>{{ hotel.name }}</h2>
-</div> -->
-
 <div class="container mt-4" *ngIf="infoHotel$ | async as hotel">
   <div class="row">
     <div class="col-md-7 col-12">
@@ -11,9 +7,6 @@
         pagination="true"
         pagination-clickable="true"
       >
-        <!-- <swiper-slide *ngFor="let item of imagenes">
-          <img [src]="item" alt="" class="img-fluid" />
-        </swiper-slide> -->
         <swiper-slide>
           <img [src]="hotel.image" alt="" class="img-fluid" />
         </swiper-slide>
@@ -47,7 +40,9 @@
             <p class="card-text">Ciudad : {{ hotel.city }}</p>
             <p class="card-text">Precio por noche: {{ hotel.price | currency }}</p>
             <p class="card-text">Valoracion del hotel: {{ hotel.scores }}</p>
-            <a href="#" class="btn btn-primary" routerLink="/checkout"> Confirmar reservacion </a>
+            <a class="btn btn-primary" [routerLink]="['/accommodation', hotel.idHotel, 'checkout']">
+              Confirmar reservación
+            </a>
           </div>
         </div>
       </div>

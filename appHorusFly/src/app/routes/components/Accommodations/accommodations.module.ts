@@ -7,6 +7,8 @@ import { AccomodationSliderComponent } from './accomodation-slider/accomodation-
 import { RatingDirective } from 'src/app/core/directive/rating.directive';
 import { DetailHotelComponent } from './detail-hotel/detail-hotel.component';
 import { register } from 'swiper/element/bundle';
+import { CheckoutAccomodationComponent } from './checkout-accomodation/checkout-accomodation.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 register();
 
 @NgModule({
@@ -15,8 +17,15 @@ register();
     accommodationsComponent,
     RatingDirective,
     DetailHotelComponent,
+    CheckoutAccomodationComponent,
   ],
-  imports: [CommonModule, AccommodationsRoutingModule, SharedModule],
+  imports: [
+    CommonModule,
+    AccommodationsRoutingModule,
+    SharedModule,
+    FormsModule,
+    ReactiveFormsModule,
+  ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AccommodationsModule {}
