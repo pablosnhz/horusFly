@@ -1,0 +1,145 @@
+<div class="container mt-3" *ngIf="infoHotel$ | async as hotel">
+  <p class="fs-2">Completa tus datos para finalizar con la reserva</p>
+  <form>
+    <div class="row">
+      <div class="col-md-8 col-12">
+        <div class="card mt-3 p-4">
+          <div class="mb-3 fw-bold fs-4">
+            <p>Datos de tu reserva: {{ hotel.city }}, {{ hotel.country }}</p>
+            <p>Hotel: {{ hotel.name }}</p>
+          </div>
+        </div>
+        <div class="card mt-3 p-4">
+          <div class="mb-3">
+            <p>Cantidad de equipaje permitido por persona: {{ hotel.persons }}</p>
+          </div>
+
+          <div class="mb-3 d-flex gap-2">
+            <select class="form-select" aria-label="Default select example">
+              <option selected>Cantidad de personas</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+            </select>
+            <select class="form-select" aria-label="Default select example">
+              <option selected>Cantidad habitaciones</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+            </select>
+          </div>
+
+          <div class="card-body">
+            <div class="d-flex gap-2">
+              <div>
+                <label for="fecha">Fecha de Entrada:</label>
+                <input
+                  type="date"
+                  class="form-control"
+                  id="fecha-inicio"
+                  name="dataIn"
+                  formControlName="dataIn"
+                  [(ngModel)]="dataIn"
+                  (change)="calculatedTotal(hotel)"
+                  min="2025-03-17"
+                  max="2025-12-31"
+                />
+              </div>
+              <div>
+                <label for="fecha">Fecha de Salida:</label>
+                <input
+                  type="date"
+                  class="form-control"
+                  id="fecha-fin"
+                  name="dataOut"
+                  formControlName="dataOut"
+                  [(ngModel)]="dataOut"
+                  (change)="calculatedTotal(hotel)"
+                  min="2025-03-23"
+                  max="2026-12-31"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card mt-3 p-4">
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Name</label>
+            <input
+              type="email"
+              class="form-control"
+              id="exampleInputEmail1"
+              aria-describedby="emailHelp"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Last Name</label>
+            <input
+              type="email"
+              class="form-control"
+              id="exampleInputEmail1"
+              aria-describedby="emailHelp"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Email address</label>
+            <input
+              type="email"
+              class="form-control"
+              id="exampleInputEmail1"
+              aria-describedby="emailHelp"
+            />
+            <div id="emailHelp" class="form-text">
+              We'll never share your email with anyone else.
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Phone</label>
+            <input
+              type="email"
+              class="form-control"
+              id="exampleInputEmail1"
+              aria-describedby="emailHelp"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 col-12">
+        <div class="card mt-3">
+          <div class="card-header fw-bold">Total</div>
+          <div class="card-body d-flex justify-content-between">
+            <p class="card-title">Precio total por dias:</p>
+            <p class="fw-bold">{{ hotel.price | currency }}</p>
+          </div>
+          <div class="card-body d-flex justify-content-between">
+            <p class="card-title">Fecha seleccionada:</p>
+            <p class="fw-bold">Desde {{ this.dataIn }}, hasta {{ this.dataOut }}</p>
+          </div>
+          <div class="card-body d-flex justify-content-between">
+            <p class="card-title">Impuestos IVA:</p>
+            <p class="fw-bold">$500</p>
+          </div>
+          <div class="card-body d-flex justify-content-between">
+            <p class="card-title fw-bold">TOTAL</p>
+            <p class="fw-bold">{{ totalPrice | currency }}</p>
+          </div>
+          <div class="card-body text-center">
+            <button class="btn btn-primary" [disabled]="!$user()">Confirmar Reservación</button>
+            <p *ngIf="!$user()">Para finalizar la compra acceda a su cuenta</p>
+          </div>
+        </div>
+        <div class="card mt-3">
+          <div class="card-header">Tenes problemas para elegir?</div>
+          <div class="card-body">
+            <h5 class="card-title">Consultas:</h5>
+            <p class="card-text">Soporte en caso de que haya consultas</p>
+            <a href="#" class="btn btn-primary" routerLink="/qa">Ir a preguntas frecuentes</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
