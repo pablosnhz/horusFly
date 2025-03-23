@@ -1,6 +1,6 @@
 <div class="container mt-3" *ngIf="infoHotel$ | async as hotel">
   <p class="fs-2">Completa tus datos para finalizar con la reserva</p>
-  <form>
+  <form [formGroup]="form" (submit)="formDatos()">
     <div class="row">
       <div class="col-md-8 col-12">
         <div class="card mt-3 p-4">
@@ -15,21 +15,36 @@
           </div>
 
           <div class="mb-3 d-flex gap-2">
-            <select class="form-select" aria-label="Default select example">
-              <option selected>Cantidad de personas</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-            </select>
-            <select class="form-select" aria-label="Default select example">
-              <option selected>Cantidad habitaciones</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-            </select>
+            <div>
+              <p>Cantidad de personas</p>
+              <select
+                formControlName="personsCount"
+                class="form-select"
+                aria-label="Default select example"
+              >
+                <option selected>Cantidad de personas</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+              </select>
+            </div>
+
+            <div>
+              <p>Cantidad habitaciones</p>
+              <select
+                formControlName="personsRoom"
+                class="form-select"
+                aria-label="Default select example"
+              >
+                <option selected>Cantidad habitaciones</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+              </select>
+            </div>
           </div>
 
           <div class="card-body">
@@ -42,9 +57,8 @@
                   id="fecha-inicio"
                   name="dataIn"
                   formControlName="dataIn"
-                  [(ngModel)]="dataIn"
                   (change)="calculatedTotal(hotel)"
-                  min="2025-03-17"
+                  min="2025-03-21"
                   max="2025-12-31"
                 />
               </div>
@@ -56,7 +70,6 @@
                   id="fecha-fin"
                   name="dataOut"
                   formControlName="dataOut"
-                  [(ngModel)]="dataOut"
                   (change)="calculatedTotal(hotel)"
                   min="2025-03-23"
                   max="2026-12-31"
@@ -69,16 +82,22 @@
           <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Name</label>
             <input
-              type="email"
+              formControlName="name"
               class="form-control"
-              id="exampleInputEmail1"
-              aria-describedby="emailHelp"
+              id="nameuser"
+              aria-describedby="nameHelp"
             />
+            <p
+              *ngIf="form.get('name')?.hasError('required') && form.get('name')?.touched"
+              style="color: red"
+            >
+              El Name es obligatorio si deseas continuar.
+            </p>
           </div>
           <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Last Name</label>
             <input
-              type="email"
+              formControlName="lastname"
               class="form-control"
               id="exampleInputEmail1"
               aria-describedby="emailHelp"
@@ -87,7 +106,7 @@
           <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Email address</label>
             <input
-              type="email"
+              formControlName="email"
               class="form-control"
               id="exampleInputEmail1"
               aria-describedby="emailHelp"
@@ -99,7 +118,7 @@
           <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Phone</label>
             <input
-              type="email"
+              formControlName="phone"
               class="form-control"
               id="exampleInputEmail1"
               aria-describedby="emailHelp"
@@ -120,15 +139,76 @@
           </div>
           <div class="card-body d-flex justify-content-between">
             <p class="card-title">Impuestos IVA:</p>
-            <p class="fw-bold">$500</p>
+            <p class="fw-bold">$40.00</p>
           </div>
           <div class="card-body d-flex justify-content-between">
             <p class="card-title fw-bold">TOTAL</p>
             <p class="fw-bold">{{ totalPrice | currency }}</p>
           </div>
+
           <div class="card-body text-center">
-            <button class="btn btn-primary" [disabled]="!$user()">Confirmar Reservación</button>
+            <button
+              class="btn btn-primary"
+              data-bs-toggle="modal"
+              data-bs-target="#exampleModal"
+              [disabled]="form.invalid && !$user()"
+              (click)="formDatos()"
+            >
+              <!--
+              (click)="formDatos()" error al hacer el click aca -->
+              Confirmar Reservación
+            </button>
+            <div
+              *ngIf="!form.invalid"
+              class="modal fade"
+              id="exampleModal"
+              tabindex="-1"
+              aria-labelledby="exampleModalLabel"
+              aria-hidden="true"
+            >
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Solicitud de Reserva</h1>
+                    <button
+                      type="button"
+                      class="btn-close"
+                      data-bs-dismiss="modal"
+                      aria-label="Close"
+                    ></button>
+                  </div>
+                  <div class="modal-body">
+                    <img
+                      src="https://img.icons8.com/?size=100&id=102561&format=png&color=000000"
+                      alt="check"
+                      width="50"
+                      height="50"
+                    />
+                    <h4>Tu solicitud se realizado con exito!</h4>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                      Cerrar
+                    </button>
+                    <button
+                      type="button"
+                      class="btn btn-primary"
+                      routerLink="/auth/profile"
+                      data-bs-dismiss="modal"
+                    >
+                      Detalle de reserva
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             <p *ngIf="!$user()">Para finalizar la compra acceda a su cuenta</p>
+            <img
+              src="https://www.comafi.com.ar/Multimedios/imgs/900_540.jpg"
+              alt="pagos"
+              class="img-fluid mt-2"
+            />
           </div>
         </div>
         <div class="card mt-3">
