@@ -1,1 +1,17 @@
 <app-top-bar></app-top-bar>
+<div class="container" *ngIf="reservationData.length > 0">
+  <div class="card border-light mb-3" style="max-width: 21rem">
+    <div class="card-body" *ngFor="let reservation of reservationData">
+      <div class="card-header fw-bold mb-2">Resumen de tu reserva - HOTEL</div>
+      <p>Hotel: {{ reservation.hotel.name }}</p>
+      <p>Ubicación: {{ reservation.hotel.city }}, {{ reservation.hotel.country }}</p>
+      <p>Fecha de entrada: {{ reservation.form.dataIn }}</p>
+      <p>Fecha de salida: {{ reservation.form.dataOut }}</p>
+      <p>Email: {{ reservation.form.email }}</p>
+      <p>Cantidad de personas: {{ reservation.form.personsCount }}</p>
+      <p>Habitaciones reservadas: {{ reservation.form.personsRoom }}</p>
+      <hr />
+      <p class="fw-bold">Importe total de la reserva: {{ reservation.total | currency }}</p>
+    </div>
+  </div>
+</div>
