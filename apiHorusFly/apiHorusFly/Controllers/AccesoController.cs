@@ -6,6 +6,7 @@ using apiHorusFly.Models;
 using apiHorusFly.Models.Dtos;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
 
 namespace apiHorusFly.Controllers
 {
@@ -61,6 +62,27 @@ namespace apiHorusFly.Controllers
             else
                 return StatusCode(StatusCodes.Status200OK, new { isSuccess = true, token = _utilidades.generarJWT(userFound) });
             
+        }
+
+        [HttpGet("users")]
+        public IActionResult GetUsers()
+        {
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+            if (userId == null)
+            {
+                return Unauthorized();
+            }
+
+            var user = _dbHorusFlyContext.Usuarios.FirstOrDefault(u => u.IdUser.ToString() == userId);
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+            string roleName = user.RoleId == 1 ? "admin" : user.RoleId == 2 ? "usuario" : "no tiene rango";
+
+            return Ok(new { userName = user.Name, email = user.Email, role = roleName });
         }
     }
 }

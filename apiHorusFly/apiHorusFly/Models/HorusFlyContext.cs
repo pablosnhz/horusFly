@@ -15,9 +15,13 @@ public partial class HorusFlyContext : DbContext
     {
     }
 
-    public virtual DbSet<Combo> Combos { get; set; }
+    public virtual DbSet<DiscountCombo> DiscountCombos { get; set; }
+
+    public virtual DbSet<FlyCombo> FlyCombos { get; set; }
 
     public virtual DbSet<Hotel> Hotels { get; set; }
+
+    public virtual DbSet<PackagesCombo> PackagesCombos { get; set; }
 
     public virtual DbSet<Role> Roles { get; set; }
 
@@ -25,33 +29,37 @@ public partial class HorusFlyContext : DbContext
 
     public virtual DbSet<Vuelo> Vuelos { get; set; }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) { }
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+        => optionsBuilder.UseSqlServer("Server=localhost; Database=horusFly;Integrated Security=true; Encrypt=false");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<Combo>(entity =>
+        modelBuilder.Entity<DiscountCombo>(entity =>
         {
-            entity.HasKey(e => e.IdCombo).HasName("PK__Combo__7F0902EDE562D82D");
+            entity
+                .HasNoKey()
+                .ToTable("DiscountCombo");
 
-            entity.ToTable("Combo");
-
-            entity.Property(e => e.IdCombo).HasColumnName("id_combo");
             entity.Property(e => e.ComboType)
                 .HasMaxLength(50)
                 .IsUnicode(false)
                 .HasColumnName("combo_type");
+            entity.Property(e => e.DepartureDate)
+                .HasColumnType("date")
+                .HasColumnName("departure_date");
             entity.Property(e => e.Destinations)
-                .HasMaxLength(255)
+                .HasMaxLength(50)
                 .IsUnicode(false)
                 .HasColumnName("destinations");
             entity.Property(e => e.DestinationsTwo)
-                .HasMaxLength(255)
+                .HasMaxLength(50)
                 .IsUnicode(false)
                 .HasColumnName("destinationsTwo");
-            entity.Property(e => e.Discount)
-                .HasDefaultValueSql("((0.00))")
-                .HasColumnType("decimal(5, 2)")
-                .HasColumnName("discount");
+            entity.Property(e => e.Discount).HasColumnName("discount");
+            entity.Property(e => e.Id)
+                .ValueGeneratedOnAdd()
+                .HasColumnName("id");
             entity.Property(e => e.Image)
                 .HasMaxLength(255)
                 .IsUnicode(false)
@@ -60,15 +68,73 @@ public partial class HorusFlyContext : DbContext
                 .HasMaxLength(255)
                 .IsUnicode(false)
                 .HasColumnName("includes");
-            entity.Property(e => e.MaxDays)
-                .HasDefaultValueSql("((14))")
-                .HasColumnName("max_days");
-            entity.Property(e => e.MinDays)
-                .HasDefaultValueSql("((5))")
-                .HasColumnName("min_days");
+            entity.Property(e => e.MaxDays).HasColumnName("max_days");
+            entity.Property(e => e.MinDays).HasColumnName("min_days");
+            entity.Property(e => e.Offer)
+                .HasMaxLength(55)
+                .IsUnicode(false)
+                .HasColumnName("offer");
+            entity.Property(e => e.Passagers).HasColumnName("passagers");
+            entity.Property(e => e.PreviousPrice)
+                .HasColumnType("decimal(10, 2)")
+                .HasColumnName("previous_price");
             entity.Property(e => e.Price)
                 .HasColumnType("decimal(10, 2)")
                 .HasColumnName("price");
+            entity.Property(e => e.ReturnDate)
+                .HasColumnType("date")
+                .HasColumnName("return_date");
+        });
+
+        modelBuilder.Entity<FlyCombo>(entity =>
+        {
+            entity
+                .HasNoKey()
+                .ToTable("FlyCombo");
+
+            entity.Property(e => e.ComboType)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("combo_type");
+            entity.Property(e => e.DepartureDate)
+                .HasColumnType("date")
+                .HasColumnName("departure_date");
+            entity.Property(e => e.Destinations)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("destinations");
+            entity.Property(e => e.DestinationsTwo)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("destinationsTwo");
+            entity.Property(e => e.Discount).HasColumnName("discount");
+            entity.Property(e => e.Id)
+                .ValueGeneratedOnAdd()
+                .HasColumnName("id");
+            entity.Property(e => e.Image)
+                .HasMaxLength(255)
+                .IsUnicode(false)
+                .HasColumnName("image");
+            entity.Property(e => e.Includes)
+                .HasMaxLength(255)
+                .IsUnicode(false)
+                .HasColumnName("includes");
+            entity.Property(e => e.MaxDays).HasColumnName("max_days");
+            entity.Property(e => e.MinDays).HasColumnName("min_days");
+            entity.Property(e => e.Offer)
+                .HasMaxLength(55)
+                .IsUnicode(false)
+                .HasColumnName("offer");
+            entity.Property(e => e.Passagers).HasColumnName("passagers");
+            entity.Property(e => e.PreviousPrice)
+                .HasColumnType("decimal(10, 2)")
+                .HasColumnName("previous_price");
+            entity.Property(e => e.Price)
+                .HasColumnType("decimal(10, 2)")
+                .HasColumnName("price");
+            entity.Property(e => e.ReturnDate)
+                .HasColumnType("date")
+                .HasColumnName("return_date");
         });
 
         modelBuilder.Entity<Hotel>(entity =>
@@ -112,6 +178,61 @@ public partial class HorusFlyContext : DbContext
             entity.Property(e => e.Scores)
                 .HasColumnType("decimal(3, 1)")
                 .HasColumnName("scores");
+        });
+
+        modelBuilder.Entity<PackagesCombo>(entity =>
+        {
+            entity
+                .HasNoKey()
+                .ToTable("PackagesCombo");
+
+            entity.Property(e => e.ComboType)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("combo_type");
+            entity.Property(e => e.DepartureDate)
+                .HasColumnType("date")
+                .HasColumnName("departure_date");
+            entity.Property(e => e.Destinations)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("destinations");
+            entity.Property(e => e.DestinationsTwo)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("destinationsTwo");
+            entity.Property(e => e.Discount).HasColumnName("discount");
+            entity.Property(e => e.Hotel)
+                .HasMaxLength(55)
+                .IsUnicode(false)
+                .HasColumnName("hotel");
+            entity.Property(e => e.Id)
+                .ValueGeneratedOnAdd()
+                .HasColumnName("id");
+            entity.Property(e => e.Image)
+                .HasMaxLength(255)
+                .IsUnicode(false)
+                .HasColumnName("image");
+            entity.Property(e => e.Includes)
+                .HasMaxLength(255)
+                .IsUnicode(false)
+                .HasColumnName("includes");
+            entity.Property(e => e.MaxDays).HasColumnName("max_days");
+            entity.Property(e => e.MinDays).HasColumnName("min_days");
+            entity.Property(e => e.Offer)
+                .HasMaxLength(55)
+                .IsUnicode(false)
+                .HasColumnName("offer");
+            entity.Property(e => e.Passagers).HasColumnName("passagers");
+            entity.Property(e => e.PreviousPrice)
+                .HasColumnType("decimal(10, 2)")
+                .HasColumnName("previous_price");
+            entity.Property(e => e.Price)
+                .HasColumnType("decimal(10, 2)")
+                .HasColumnName("price");
+            entity.Property(e => e.ReturnDate)
+                .HasColumnType("date")
+                .HasColumnName("return_date");
         });
 
         modelBuilder.Entity<Role>(entity =>
@@ -167,12 +288,17 @@ public partial class HorusFlyContext : DbContext
                 .HasMaxLength(255)
                 .IsUnicode(false)
                 .HasColumnName("airline");
+            entity.Property(e => e.AirplaneIcon)
+                .HasMaxLength(255)
+                .IsUnicode(false)
+                .HasColumnName("airplaneIcon");
             entity.Property(e => e.DateDeparture)
                 .HasColumnType("date")
                 .HasColumnName("date_departure");
             entity.Property(e => e.DateReturn)
                 .HasColumnType("date")
                 .HasColumnName("date_return");
+            entity.Property(e => e.Days).HasColumnName("days");
             entity.Property(e => e.FromCity)
                 .HasMaxLength(255)
                 .IsUnicode(false)
