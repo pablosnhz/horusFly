@@ -1,30 +1,31 @@
-import { Component, Input, numberAttribute } from '@angular/core';
-import { map, Observable } from 'rxjs';
-import { AccomodationsService } from '../../services/accomodations.service';
+import { Component, Input, numberAttribute, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Observable, map } from 'rxjs';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AccomodationsService } from '../../services/accomodations.service';
+import { FlightsService } from '../../services/flights.service';
 
 @Component({
-  selector: 'app-checkout-accomodation',
-  templateUrl: './checkout-accomodation.component.html',
-  styleUrls: ['./checkout-accomodation.component.scss'],
+  selector: 'app-checkout-flights',
+  templateUrl: './checkout-flights.component.html',
+  styleUrls: ['./checkout-flights.component.scss'],
 })
-export class CheckoutAccomodationComponent {
-  @Input({ transform: numberAttribute }) idHotels!: number;
+export class CheckoutFlightsComponent implements OnInit {
+  @Input({ transform: numberAttribute }) idFlights!: number;
 
-  infoHotel$!: Observable<any>;
+  infoFlights$!: Observable<any>;
   $user = this.authService.$user;
   dataIn!: string;
   dataOut!: string;
   totalPrice: number = 0;
 
   form!: FormGroup;
-  hotelData!: any;
+  flyData!: any;
 
   submited: boolean = false;
 
   constructor(
-    private acService: AccomodationsService,
+    private flyService: FlightsService,
     private authService: AuthService,
     private fb: FormBuilder,
   ) {
@@ -36,16 +37,17 @@ export class CheckoutAccomodationComponent {
       email: ['', Validators.email],
       phone: ['', Validators.required],
       personsCount: ['', Validators.required],
-      personsRoom: ['', Validators.required],
     });
   }
 
   ngOnInit(): void {
-    this.infoHotel$ = this.acService.getInfo().pipe(
+    this.infoFlights$ = this.flyService.getDatos().pipe(
       map((data) => {
-        const hotel = data.value.find((hotel: any) => hotel.idHotel === this.idHotels);
-        this.hotelData = hotel;
-        return hotel;
+        console.log('response data', data);
+
+        const fly = data.value.find((flyList: any) => flyList.idVuelo === this.idFlights);
+        this.flyData = fly;
+        return fly;
       }),
     );
 
@@ -67,9 +69,9 @@ export class CheckoutAccomodationComponent {
       form: this.form.value,
       total: this.totalPrice,
       hotel: {
-        city: this.hotelData.city,
-        country: this.hotelData.country,
-        name: this.hotelData.name,
+        city: this.flyData.city,
+        country: this.flyData.country,
+        name: this.flyData.name,
       },
     };
     let combinacionArray = JSON.parse(sessionStorage.getItem('form') || '[]');

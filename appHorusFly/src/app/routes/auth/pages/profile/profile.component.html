@@ -1,17 +1,39 @@
 <app-top-bar></app-top-bar>
-<div class="container" *ngIf="reservationData.length > 0">
-  <div class="card border-light mb-3" style="max-width: 21rem">
-    <div class="card-body" *ngFor="let reservation of reservationData">
-      <div class="card-header fw-bold mb-2">Resumen de tu reserva - HOTEL</div>
-      <p>Hotel: {{ reservation.hotel.name }}</p>
-      <p>Ubicación: {{ reservation.hotel.city }}, {{ reservation.hotel.country }}</p>
-      <p>Fecha de entrada: {{ reservation.form.dataIn }}</p>
-      <p>Fecha de salida: {{ reservation.form.dataOut }}</p>
-      <p>Email: {{ reservation.form.email }}</p>
-      <p>Cantidad de personas: {{ reservation.form.personsCount }}</p>
-      <p>Habitaciones reservadas: {{ reservation.form.personsRoom }}</p>
-      <hr />
-      <p class="fw-bold">Importe total de la reserva: {{ reservation.total | currency }}</p>
-    </div>
+<div class="container wrapper d-flex align-items-stretch">
+  <div class="d-flex flex-column flex-shrink-0 p-3" style="width: 280px">
+    <a
+      href="/"
+      class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none"
+    >
+      <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
+      <span class="fs-4">Datos</span>
+    </a>
+    <hr />
+    <ul class="nav nav-pills flex-column mb-auto">
+      <li class="nav-item">
+        <a
+          [routerLink]="['/auth/profile/reserve']"
+          class="nav-link link-dark"
+          aria-current="page"
+          routerLinkActive="text-decoration-underline"
+        >
+          <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"></use></svg>
+          Reservas
+        </a>
+      </li>
+      <li>
+        <a
+          [routerLink]="['/auth/profile/user']"
+          routerLinkActive="text-decoration-underline"
+          class="nav-link link-dark"
+        >
+          <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
+          Tus datos
+        </a>
+      </li>
+    </ul>
+  </div>
+  <div class="conditional">
+    <router-outlet></router-outlet>
   </div>
 </div>
