@@ -5,18 +5,4 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss'],
 })
-export class ProfileComponent implements OnInit {
-  reservationData: any = null;
-
-  ngOnInit(): void {
-    this.getReservationData();
-  }
-
-  getReservationData() {
-    const storedData = sessionStorage.getItem('form');
-    if (storedData) {
-      this.reservationData = JSON.parse(storedData);
-      console.log(this.reservationData);
-    }
-  }
-}
+export class ProfileComponent {}

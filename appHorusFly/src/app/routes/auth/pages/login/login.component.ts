@@ -34,15 +34,17 @@ export class LoginComponent {
 
     this.authService.login(email, password).subscribe({
       next: (response: any) => {
-        if (response && response.isSuccess) {
+        if (response.token && response.isSuccess) {
           sessionStorage.setItem('tokenFly', response.token);
           this.router.navigate(['/']);
         } else {
           this.errorMessage = 'correo o contraseña incorrectos';
+          sessionStorage.removeItem('tokenFly');
         }
       },
       error: (error) => {
         console.error('error en el login:', error);
+        sessionStorage.removeItem('tokenFly');
       },
     });
   }

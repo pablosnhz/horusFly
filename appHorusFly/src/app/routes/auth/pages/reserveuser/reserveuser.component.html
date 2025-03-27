@@ -1,0 +1,30 @@
+<h2>Tus reservas</h2>
+<ng-container *ngIf="reservationData">
+  <div class="container" *ngIf="reservationData.length > 0">
+    <div class="d-flex flex-row flex-wrap gap-3 mt-5">
+      <div
+        class="card border-light mb-3"
+        style="max-width: 21rem"
+        *ngFor="let reservation of reservationData; let i = index"
+      >
+        <div class="card-header fw-bold mb-2 d-flex justify-content-between">
+          <p>Resumen de tu reserva - HOTEL</p>
+          <button class="btn btn-danger btn-sm" style="height: 30px" (click)="deleteCard(i)">
+            X
+          </button>
+        </div>
+        <div class="card-body">
+          <p>Hotel: {{ reservation.hotel.name }}</p>
+          <p>Ubicación: {{ reservation.hotel.city }}, {{ reservation.hotel.country }}</p>
+          <p>Fecha de entrada: {{ reservation.form.dataIn }}</p>
+          <p>Fecha de salida: {{ reservation.form.dataOut }}</p>
+          <p>Email: {{ reservation.form.email }}</p>
+          <p>Cantidad de personas: {{ reservation.form.personsCount }}</p>
+          <p>Habitaciones reservadas: {{ reservation.form.personsRoom }}</p>
+          <hr />
+          <p class="fw-bold">Importe total de la reserva: {{ reservation.total | currency }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>

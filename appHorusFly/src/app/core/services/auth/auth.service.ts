@@ -23,8 +23,10 @@ export class AuthService {
   login(email: string, password: string) {
     return this.http.post(this.apiAuth + '/login', { email, password }).pipe(
       tap((user: any) => {
-        this.$user.set(user);
-        sessionStorage.setItem('tokenFly', user.token);
+        if (user.token) {
+          this.$user.set(user);
+          sessionStorage.setItem('tokenFly', user.token);
+        }
       }),
     );
   }
