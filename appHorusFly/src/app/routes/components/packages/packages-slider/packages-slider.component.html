@@ -9,15 +9,18 @@
     free-mode="true"
     routerLink="/details"
   >
-    <swiper-slide *ngFor="let item of datos">
-      <div class="container">
+    <swiper-slide *ngFor="let itemPackage of datos">
+      <div class="container" [routerLink]="[itemPackage.id]">
         <div class="card mx-auto" style="max-width: 350px">
-          <img [src]="item.image" class="card" alt="Imagen" />
-
+          <img [src]="itemPackage.image" class="card" alt="Imagen" />
           <div class="card-body">
-            <p class="card-text fw-bold">{{ item.comboType }}</p>
+            <span class="text-img"
+              >{{ itemPackage.maxDays }} DÍAS / {{ itemPackage.minDays }} NOCHES</span
+            >
+            <p class="card-text fw-bold">{{ itemPackage.comboType }}</p>
             <h5 class="card-title">
-              {{ item.destinations }}{{ item.destinationsTwo ? ' + ' + item.destinationsTwo : '' }}
+              {{ itemPackage.destinations
+              }}{{ itemPackage.destinationsTwo ? ' + ' + itemPackage.destinationsTwo : '' }}
             </h5>
             <p class="card-text texto-responsive" *ngIf="!ocultarTexto">
               Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea, vitae quidem.
@@ -25,7 +28,7 @@
           </div>
 
           <div class="card-body">
-            <p>{{ item.includes }}</p>
+            <p>{{ itemPackage.includes }}</p>
             <p class="card-text">
               Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea, vitae quidem. Velit fuga
               ratione deleniti, praesentium sit sapiente odio hic voluptatum amet necessitatibus.
@@ -33,8 +36,8 @@
           </div>
 
           <div class="card-footer bg-white border">
-            <p>Precio final {{ item.passagers }} personas</p>
-            <p class="fw-bold">{{ item.price | currency }}</p>
+            <p>Precio final {{ itemPackage.passagers }} personas</p>
+            <p class="fw-bold">{{ itemPackage.price | currency }}</p>
           </div>
         </div>
       </div>

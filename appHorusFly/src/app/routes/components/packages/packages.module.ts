@@ -7,6 +7,7 @@ import { AppModule } from 'src/app/app.module';
 import { register } from 'swiper/element/bundle';
 import { FlightsSliderComponent } from './flights-slider/flights-slider.component';
 import { DiscountSliderComponent } from './discount-slider/discount-slider.component';
+import { DetailPackagesComponent } from './detail-packages/detail-packages.component';
 register();
 
 @NgModule({
@@ -15,6 +16,7 @@ register();
     PackagesSliderComponent,
     FlightsSliderComponent,
     DiscountSliderComponent,
+    DetailPackagesComponent,
   ],
   imports: [CommonModule, PackagesRoutingModule],
   exports: [],

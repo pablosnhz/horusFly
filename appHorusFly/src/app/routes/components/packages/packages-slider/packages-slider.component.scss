@@ -6,7 +6,11 @@ body {
 
 body {
   background: #eee;
-  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-family:
+    Helvetica Neue,
+    Helvetica,
+    Arial,
+    sans-serif;
   font-size: 14px;
   color: #000;
   margin: 0;
@@ -35,7 +39,6 @@ swiper-slide img {
   object-fit: cover;
 }
 
-
 @media (max-width: 992px) {
   .card {
     max-width: 300px;
@@ -44,7 +47,7 @@ swiper-slide img {
 
   swiper-slide img {
     padding: inherit;
-    margin:auto;
+    margin: auto;
     max-width: 100%;
     display: block;
   }
@@ -77,4 +80,18 @@ swiper-slide img {
     max-width: 1400px;
     margin: 0 auto;
   }
+}
+
+.text-img {
+  position: absolute;
+  top: auto;
+  padding: 2px 10px;
+  transform: translateY(-130%);
+
+  border-radius: 6px;
+
+  color: white;
+  font-weight: 500;
+
+  background-color: #dc7500;
 }

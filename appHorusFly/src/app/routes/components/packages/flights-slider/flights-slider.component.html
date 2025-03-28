@@ -10,7 +10,7 @@
     routerLink="/details"
   >
     <swiper-slide *ngFor="let item of dataFlights">
-      <div class="container">
+      <div class="container" [routerLink]="[item.id]">
         <div class="card mx-auto" style="max-width: 350px">
           <img [src]="item.image" class="card" alt="Imagen" />
 
