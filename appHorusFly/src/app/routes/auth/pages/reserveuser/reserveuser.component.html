@@ -1,30 +1,86 @@
 <h2>Tus reservas</h2>
-<ng-container *ngIf="reservationData">
-  <div class="container" *ngIf="reservationData.length > 0">
-    <div class="d-flex flex-row flex-wrap gap-3 mt-5">
-      <div
-        class="card border-light mb-3"
-        style="max-width: 21rem"
-        *ngFor="let reservation of reservationData; let i = index"
-      >
-        <div class="card-header fw-bold mb-2 d-flex justify-content-between">
-          <p>Resumen de tu reserva - HOTEL</p>
-          <button class="btn btn-danger btn-sm" style="height: 30px" (click)="deleteCard(i)">
-            X
-          </button>
-        </div>
-        <div class="card-body">
-          <p>Hotel: {{ reservation.hotel.name }}</p>
-          <p>Ubicación: {{ reservation.hotel.city }}, {{ reservation.hotel.country }}</p>
-          <p>Fecha de entrada: {{ reservation.form.dataIn }}</p>
-          <p>Fecha de salida: {{ reservation.form.dataOut }}</p>
-          <p>Email: {{ reservation.form.email }}</p>
-          <p>Cantidad de personas: {{ reservation.form.personsCount }}</p>
-          <p>Habitaciones reservadas: {{ reservation.form.personsRoom }}</p>
-          <hr />
-          <p class="fw-bold">Importe total de la reserva: {{ reservation.total | currency }}</p>
+
+<ng-container
+  *ngIf="
+    (reservationDataAccommodation && reservationDataAccommodation.length > 0) ||
+      (reservationDataFly && reservationDataFly.length > 0);
+    else nocontent
+  "
+>
+  <ng-container *ngIf="reservationDataAccommodation && reservationDataAccommodation.length > 0">
+    <div class="container">
+      <div class="d-flex flex-row flex-wrap gap-3 mt-5">
+        <div
+          class="card border-light mb-3"
+          style="max-width: 21rem"
+          *ngFor="let reservation of reservationDataAccommodation; let indexA = index"
+        >
+          <div class="card-header fw-bold mb-2 d-flex justify-content-between">
+            <p>Resumen de tu reserva - HOTEL</p>
+            <button
+              class="btn btn-danger btn-sm"
+              style="height: 30px"
+              (click)="deleteCard(indexA, 'hotel')"
+            >
+              X
+            </button>
+          </div>
+          <div class="card-body">
+            <p>Hotel: {{ reservation.hotel.name }}</p>
+            <p>Ubicación: {{ reservation.hotel.city }}, {{ reservation.hotel.country }}</p>
+            <p>Fecha de entrada: {{ reservation.form.dataIn }}</p>
+            <p>Fecha de salida: {{ reservation.form.dataOut }}</p>
+            <p>Email: {{ reservation.form.email }}</p>
+            <p>Cantidad de personas: {{ reservation.form.personsCount }}</p>
+            <p>Habitaciones reservadas: {{ reservation.form.personsRoom }}</p>
+            <hr />
+            <p class="fw-bold">Importe total: {{ reservation.total | currency }}</p>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  </ng-container>
+
+  <ng-container *ngIf="reservationDataFly && reservationDataFly.length > 0">
+    <div class="container">
+      <div class="d-flex flex-row flex-wrap gap-3 mt-5">
+        <div
+          class="card border-light mb-3"
+          style="max-width: 21rem"
+          *ngFor="let reservationFly of reservationDataFly; let indexB = index"
+        >
+          <div class="card-header fw-bold mb-2 d-flex justify-content-between">
+            <p>Resumen de tu reserva - VUELO</p>
+            <button
+              class="btn btn-danger btn-sm"
+              style="height: 30px"
+              (click)="deleteCard(indexB, 'fly')"
+            >
+              X
+            </button>
+          </div>
+          <div class="card-body">
+            <p>Name: {{ reservationFly.form.name }}</p>
+            <p>LastName: {{ reservationFly.form.lastname }}</p>
+
+            <p>Aerolinea: {{ reservationFly.fly.airline }}</p>
+            <p>Sale desde: {{ reservationFly.fly.fromCity }}</p>
+            <p>Vuelve desde: {{ reservationFly.fly.toCity }}</p>
+            <p>Cantidad maletas: {{ reservationFly.fly.suitcases }}</p>
+            <p>Fecha de salida: {{ reservationFly.form.dataIn }}</p>
+            <p>Fecha de vuelta: {{ reservationFly.form.dataOut }}</p>
+            <!-- <p>Maletas permitidas: {{ reservationDataFly.hotel.passengers }}</p> -->
+            <p>Email: {{ reservationFly.form.email }}</p>
+            <p>Cantidad de personas: {{ reservationFly.form.personsCount }}</p>
+            <hr />
+            <p class="fw-bold">Importe total: {{ reservationFly.total | currency }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
 </ng-container>
+
+<ng-template #nocontent>
+  <h1>No hay reservas</h1>
+</ng-template>

@@ -21,6 +21,7 @@ export class TopBarComponent implements OnInit {
         this.router.url.includes('/details') ||
         this.router.url.includes('/checkout') ||
         this.router.url.startsWith('/accommodation/') ||
+        this.router.url.includes('/packages/') ||
         this.router.url.includes('auth/profile');
     });
   }

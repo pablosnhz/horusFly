@@ -72,7 +72,7 @@ export class CheckoutAccomodationComponent {
         name: this.hotelData.name,
       },
     };
-    let combinacionArray = JSON.parse(sessionStorage.getItem('form') || '[]');
+    let combinacionArray = JSON.parse(sessionStorage.getItem('formAcomoda') || '[]');
 
     const exists = combinacionArray.some(
       (item: any) => JSON.stringify(item) === JSON.stringify(formCombined),
@@ -80,7 +80,7 @@ export class CheckoutAccomodationComponent {
 
     if (!exists) {
       combinacionArray.push(formCombined);
-      sessionStorage.setItem('form', JSON.stringify(combinacionArray));
+      sessionStorage.setItem('formAcomoda', JSON.stringify(combinacionArray));
     }
 
     this.form.reset();

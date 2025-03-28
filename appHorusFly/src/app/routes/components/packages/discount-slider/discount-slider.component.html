@@ -7,14 +7,14 @@
     slides-per-view="4"
     space-between="30"
     free-mode="true"
-    routerLink="/details"
   >
     <swiper-slide *ngFor="let item of datosDiscount">
-      <div class="container">
+      <div class="container" [routerLink]="[item.id]">
         <div class="card mx-auto" style="max-width: 350px">
           <img [src]="item.image" class="card" alt="Imagen" />
 
           <div class="card-body">
+            <span class="text-img">{{ item.maxDays }} DÍAS / {{ item.minDays }} NOCHES</span>
             <p class="card-text fw-bold">{{ item.comboType }}</p>
             <h5 class="card-title">
               {{ item.destinations }}{{ item.destinationsTwo ? ' + ' + item.destinationsTwo : '' }}

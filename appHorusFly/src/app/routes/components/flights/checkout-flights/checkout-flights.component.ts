@@ -1,4 +1,4 @@
-import { Component, Input, numberAttribute, OnInit } from '@angular/core';
+import { Component, Input, numberAttribute, OnInit, SimpleChanges } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Observable, map } from 'rxjs';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
@@ -31,13 +31,22 @@ export class CheckoutFlightsComponent implements OnInit {
   ) {
     this.form = this.fb.group({
       dataIn: ['', Validators.required],
-      dataOut: ['', Validators.required],
+      dataOut: [''],
       name: ['', Validators.required],
       lastname: ['', Validators.required],
-      email: ['', Validators.email],
+      email: ['', [Validators.email, Validators.required]],
       phone: ['', Validators.required],
       personsCount: ['', Validators.required],
     });
+
+    // const formCombined = {
+    //   form: this.form.value,
+    //   total: this.totalPrice,
+    //   hotel: {
+    //     city: this.flyData.city,
+    //     country: this.flyData.country,
+    //     name: this.flyData.name,
+    //   },
   }
 
   ngOnInit(): void {
@@ -58,7 +67,7 @@ export class CheckoutFlightsComponent implements OnInit {
     });
   }
 
-  formDatos() {
+  formDatosFly() {
     this.submited = true;
 
     if (this.form.invalid) {
@@ -68,13 +77,17 @@ export class CheckoutFlightsComponent implements OnInit {
     const formCombined = {
       form: this.form.value,
       total: this.totalPrice,
-      hotel: {
-        city: this.flyData.city,
-        country: this.flyData.country,
-        name: this.flyData.name,
+      fly: {
+        airline: this.flyData.airline,
+        airplaneIcon: this.flyData.airplaneIcon,
+        suitcases: this.flyData.suitcases,
+        fromCity: this.flyData.fromCity,
+        toCity: this.flyData.toCity,
       },
     };
-    let combinacionArray = JSON.parse(sessionStorage.getItem('form') || '[]');
+    console.log('formDatos', formCombined);
+
+    let combinacionArray = JSON.parse(sessionStorage.getItem('formFly') || '[]');
 
     const exists = combinacionArray.some(
       (item: any) => JSON.stringify(item) === JSON.stringify(formCombined),
@@ -82,23 +95,39 @@ export class CheckoutFlightsComponent implements OnInit {
 
     if (!exists) {
       combinacionArray.push(formCombined);
-      sessionStorage.setItem('form', JSON.stringify(combinacionArray));
+      sessionStorage.setItem('formFly', JSON.stringify(combinacionArray));
     }
 
     this.form.reset();
   }
 
-  calculatedTotal(hotel?: any) {
+  calculatedTotal(fly?: any) {
     const dateIn = this.form.get('dataIn')?.value;
     const dateOut = this.form.get('dataOut')?.value;
 
-    if (dateIn && dateOut && hotel) {
+    if (dateIn && dateOut && fly) {
       const dateGo = new Date(dateIn);
       const dateReturn = new Date(dateOut);
       const timeDif = dateReturn.getTime() - dateGo.getTime();
       const daysDif = Math.ceil(timeDif / (1000 * 60 * 60 * 24));
 
-      this.totalPrice = daysDif * hotel.price + 40.0;
+      this.totalPrice = daysDif * fly.price + 50.0;
     }
+  }
+
+  // para el caso de que fly.tocity este o no, hacemos un condicional de la validacion
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['flyList']) {
+      this.validatorForToCity();
+    }
+  }
+
+  validatorForToCity() {
+    if (this.flyData.toCity) {
+      this.form.get('dataOut')?.setValidators(Validators.required);
+    } else {
+      this.form.get('dataOut')?.clearValidators();
+    }
+    this.form.get('dataOut')?.updateValueAndValidity();
   }
 }

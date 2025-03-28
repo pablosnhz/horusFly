@@ -1,6 +1,6 @@
 <div class="container mt-3" *ngIf="infoFlights$ | async as flyList">
   <p class="fs-2">Tu reserva de vuelo esta casi listo</p>
-  <form [formGroup]="form" (submit)="formDatos()">
+  <form [formGroup]="form" (submit)="formDatosFly()">
     <div class="row">
       <div class="col-md-8 col-12">
         <div class="card mt-3 p-4">
@@ -28,7 +28,6 @@
                 class="form-select"
                 aria-label="Default select example"
               >
-                <option selected>Cantidad de personas</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -58,6 +57,7 @@
                   id="fecha-inicio"
                   name="dataIn"
                   formControlName="dataIn"
+                  (change)="calculatedTotal(flyList)"
                   min="2025-03-21"
                   max="2025-12-31"
                 />
@@ -76,6 +76,7 @@
                   id="fecha-fin"
                   name="dataOut"
                   formControlName="dataOut"
+                  (change)="calculatedTotal(flyList)"
                   min="2025-03-23"
                   max="2026-12-31"
                 />
@@ -164,12 +165,12 @@
             <p class="card-title">Fecha seleccionada:</p>
             <p class="fw-bold">
               Sale el {{ dataIn }}
-              <span *ngIf="flyList.toCity">, hasta {{ dataOut }}</span>
+              <span *ngIf="flyList.toCity">, vuelve el {{ dataOut }}</span>
             </p>
           </div>
           <div class="card-body d-flex justify-content-between">
             <p class="card-title">Impuestos IVA:</p>
-            <p class="fw-bold">$40.00</p>
+            <p class="fw-bold">$50.00</p>
           </div>
           <div class="card-body d-flex justify-content-between">
             <p class="card-title fw-bold">TOTAL</p>
@@ -182,7 +183,6 @@
               data-bs-toggle="modal"
               data-bs-target="#exampleModal"
               [disabled]="form.invalid || !$user()"
-              (click)="formDatos()"
             >
               Confirmar Reservación
             </button>
