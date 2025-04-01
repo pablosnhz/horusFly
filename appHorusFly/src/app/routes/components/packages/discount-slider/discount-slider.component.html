@@ -9,7 +9,7 @@
     free-mode="true"
   >
     <swiper-slide *ngFor="let item of datosDiscount">
-      <div class="container" [routerLink]="[item.id]">
+      <div class="container" [routerLink]="['discount', item.id]">
         <div class="card mx-auto" style="max-width: 350px">
           <img [src]="item.image" class="card" alt="Imagen" />
 

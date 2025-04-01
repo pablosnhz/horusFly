@@ -8,6 +8,8 @@ import { register } from 'swiper/element/bundle';
 import { FlightsSliderComponent } from './flights-slider/flights-slider.component';
 import { DiscountSliderComponent } from './discount-slider/discount-slider.component';
 import { DetailPackagesComponent } from './detail-packages/detail-packages.component';
+import { CheckoutPackagesComponent } from './checkout-packages/checkout-packages.component';
+import { ReactiveFormsModule } from '@angular/forms';
 register();
 
 @NgModule({
@@ -17,8 +19,9 @@ register();
     FlightsSliderComponent,
     DiscountSliderComponent,
     DetailPackagesComponent,
+    CheckoutPackagesComponent,
   ],
-  imports: [CommonModule, PackagesRoutingModule],
+  imports: [CommonModule, PackagesRoutingModule, ReactiveFormsModule],
   exports: [],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

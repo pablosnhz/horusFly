@@ -10,7 +10,7 @@
     routerLink="/details"
   >
     <swiper-slide *ngFor="let itemPackage of datos">
-      <div class="container" [routerLink]="[itemPackage.id]">
+      <div class="container" [routerLink]="['paquetes', itemPackage.id]">
         <div class="card mx-auto" style="max-width: 350px">
           <img [src]="itemPackage.image" class="card" alt="Imagen" />
           <div class="card-body">

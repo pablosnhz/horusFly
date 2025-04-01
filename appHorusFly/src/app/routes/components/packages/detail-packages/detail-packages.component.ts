@@ -8,9 +8,9 @@ import { PackagesService } from '../../services/packages.service';
   styleUrls: ['./detail-packages.component.scss'],
 })
 export class DetailPackagesComponent implements OnInit {
-  @Input({ transform: numberAttribute }) idDiscount!: number;
   @Input({ transform: numberAttribute }) idPackages!: number;
   @Input({ transform: numberAttribute }) idCombo!: number;
+  @Input({ transform: numberAttribute }) idDiscount!: number;
 
   infoDiscount$!: Observable<any>;
   infoPackage$!: Observable<any>;

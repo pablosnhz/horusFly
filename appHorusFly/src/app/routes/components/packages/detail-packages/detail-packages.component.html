@@ -1,4 +1,135 @@
-<div class="container mt-4" *ngIf="infoDiscount$ || infoPackage$ || infoCombo$ | async as discount">
+<div class="container mt-4" *ngIf="infoPackage$ | async as package">
+  <div class="row">
+    <div class="col-md-7 col-12">
+      <swiper-container
+        class="mySwiper"
+        space-between="30"
+        pagination="true"
+        pagination-clickable="true"
+      >
+        <swiper-slide>
+          <img [src]="package.image" alt="" class="img-fluid" />
+        </swiper-slide>
+      </swiper-container>
+    </div>
+
+    <div class="col-md-5 col-12">
+      <div class="box mt-3">
+        <p class="fw-bold">{{ package.comboType }}</p>
+        <h2>{{ package.destinations }}</h2>
+        <p>{{ package.includes }}</p>
+        <p>*el descuento solo aplica para {{ package.passagers }} persona</p>
+        <br />
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta culpa blanditiis magnam
+          ab voluptates. Quibusdam repellendus fugiat asperiores, aspernatur harum veritatis
+          repellat fugit nobis animi earum, culpa aut nulla in. Reprehenderit tempora esse et iure
+          animi saepe sunt, ducimus eveniet unde distinctio quam magni quia ipsum ab omnis assumenda
+          nulla corporis dolorum sit dicta quasi rerum eaque! Assumenda, accusantium possimus?
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="container mt-3">
+    <p class="fs-2">Opciones/ variantes de precios segun la cantidad de dias</p>
+    <div class="row">
+      <div class="col-md-8 col-12">
+        <div class="card mt-3">
+          <div class="card-header">Caracteristicas del Descuento</div>
+          <div class="card-body">
+            <h5 class="card-title">Caracteristicas:</h5>
+            <p class="card-text">Ciudad : {{ package.destinations }}</p>
+            <p class="card-text">Precio por persona: {{ package.price | currency }}</p>
+            <p class="card-text">Dias: {{ package.maxDays }} DIAS y {{ package.minDays }} NOCHES</p>
+            <a
+              class="btn btn-primary"
+              [routerLink]="['/packages/paquetes', package.id, 'checkout']"
+            >
+              Confirmar reservación
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 col-12">
+        <div class="card mt-3">
+          <div class="card-header">Tenes problemas para elegir?</div>
+          <div class="card-body">
+            <h5 class="card-title">Consultas:</h5>
+            <p class="card-text">Soporte en caso de que haya consultas</p>
+            <a href="#" class="btn btn-primary" routerLink="/qa">Ir a preguntas frecuentes</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container mt-4" *ngIf="infoCombo$ | async as combo">
+  <div class="row">
+    <div class="col-md-7 col-12">
+      <swiper-container
+        class="mySwiper"
+        space-between="30"
+        pagination="true"
+        pagination-clickable="true"
+      >
+        <swiper-slide>
+          <img [src]="combo.image" alt="" class="img-fluid" />
+        </swiper-slide>
+      </swiper-container>
+    </div>
+
+    <div class="col-md-5 col-12">
+      <div class="box mt-3">
+        <p class="fw-bold">{{ combo.comboType }}</p>
+        <h2>{{ combo.destinations }} + {{ combo.destinationsTwo }}</h2>
+        <p>{{ combo.includes }}</p>
+        <p>*el descuento solo aplica para {{ combo.passagers }} persona</p>
+        <br />
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta culpa blanditiis magnam
+          ab voluptates. Quibusdam repellendus fugiat asperiores, aspernatur harum veritatis
+          repellat fugit nobis animi earum, culpa aut nulla in. Reprehenderit tempora esse et iure
+          animi saepe sunt, ducimus eveniet unde distinctio quam magni quia ipsum ab omnis assumenda
+          nulla corporis dolorum sit dicta quasi rerum eaque! Assumenda, accusantium possimus?
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="container mt-3">
+    <p class="fs-2">Opciones/ variantes de precios segun la cantidad de dias</p>
+    <div class="row">
+      <div class="col-md-8 col-12">
+        <div class="card mt-3">
+          <div class="card-header">Caracteristicas del Descuento</div>
+          <div class="card-body">
+            <h5 class="card-title">Caracteristicas:</h5>
+            <p class="card-text">Ciudad : {{ combo.destinations }}</p>
+            <p class="card-text">Precio por persona: {{ combo.price | currency }}</p>
+            <p class="card-text">Dias: {{ combo.maxDays }} DIAS y {{ combo.minDays }} NOCHES</p>
+            <a class="btn btn-primary" [routerLink]="['/packages/combo', combo.id, 'checkout']">
+              Confirmar reservación
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 col-12">
+        <div class="card mt-3">
+          <div class="card-header">Tenes problemas para elegir?</div>
+          <div class="card-body">
+            <h5 class="card-title">Consultas:</h5>
+            <p class="card-text">Soporte en caso de que haya consultas</p>
+            <a href="#" class="btn btn-primary" routerLink="/qa">Ir a preguntas frecuentes</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container mt-4" *ngIf="infoDiscount$ | async as discount">
   <div class="row">
     <div class="col-md-7 col-12">
       <swiper-container
@@ -46,7 +177,7 @@
             </p>
             <a
               class="btn btn-primary"
-              [routerLink]="['/accommodation', discount.idHotel, 'checkout']"
+              [routerLink]="['/packages/discount', discount.id, 'checkout']"
             >
               Confirmar reservación
             </a>

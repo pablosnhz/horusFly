@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PackagesComponent } from './packages.component';
 import { DetailPackagesComponent } from './detail-packages/detail-packages.component';
+import { CheckoutPackagesComponent } from './checkout-packages/checkout-packages.component';
 
 const routes: Routes = [
   {
@@ -9,16 +10,28 @@ const routes: Routes = [
     component: PackagesComponent,
   },
   {
-    path: ':idDiscount',
+    path: 'combo/:idCombo',
     component: DetailPackagesComponent,
   },
   {
-    path: ':idPackages',
+    path: 'combo/:idCombo/checkout',
+    component: CheckoutPackagesComponent,
+  },
+  {
+    path: 'paquetes/:idPackages',
     component: DetailPackagesComponent,
   },
   {
-    path: ':idCombo',
+    path: 'paquetes/:idPackages/checkout',
+    component: CheckoutPackagesComponent,
+  },
+  {
+    path: 'discount/:idDiscount',
     component: DetailPackagesComponent,
+  },
+  {
+    path: 'discount/:idDiscount/checkout',
+    component: CheckoutPackagesComponent,
   },
 ];
 

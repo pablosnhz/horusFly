@@ -3,7 +3,8 @@
 <ng-container
   *ngIf="
     (reservationDataAccommodation && reservationDataAccommodation.length > 0) ||
-      (reservationDataFly && reservationDataFly.length > 0);
+      (reservationDataFly && reservationDataFly.length > 0) ||
+      (reservationForPackagesPack && reservationForPackagesPack.length > 0);
     else nocontent
   "
 >
@@ -74,6 +75,139 @@
             <p>Cantidad de personas: {{ reservationFly.form.personsCount }}</p>
             <hr />
             <p class="fw-bold">Importe total: {{ reservationFly.total | currency }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+
+  <!-- !PACKAGES Packages, combo and discount -->
+
+  <ng-container *ngIf="reservationForPackagesPack && reservationForPackagesPack.length > 0">
+    <div class="container">
+      <div class="d-flex flex-row flex-wrap gap-3 mt-5">
+        <div
+          class="card border-light mb-3"
+          style="max-width: 21rem"
+          *ngFor="let reservationPack of reservationForPackagesPack; let indexC = index"
+        >
+          <div class="card-header fw-bold mb-2 d-flex justify-content-between">
+            <p>Resumen de tu reserva - PACKAGES</p>
+            <button
+              class="btn btn-danger btn-sm"
+              style="height: 30px"
+              (click)="deleteCard(indexC, 'packages')"
+            >
+              X
+            </button>
+          </div>
+          <div class="card-body">
+            <p>Tipo de reserva: {{ reservationPack.hotel.type }}</p>
+
+            <p class="fw-bold">Destino: {{ reservationPack.hotel.country }}</p>
+            <p class="fw-bold">Hotel: {{ reservationPack.hotel.hotels }}</p>
+            <p>Nombre: {{ reservationPack.form.name }}</p>
+            <p>Apellido: {{ reservationPack.form.lastname }}</p>
+            <p>Email: {{ reservationPack.form.email }}</p>
+            <p>Incluye: {{ reservationPack.hotel.includes }}</p>
+            <p>Días mínimos: {{ reservationPack.hotel.minDays }}</p>
+            <p>Días máximos: {{ reservationPack.hotel.maxDays }}</p>
+
+            <p>Fecha de entrada: {{ reservationPack.form.dataIn }}</p>
+            <p>Fecha de salida: {{ reservationPack.form.dataOut }}</p>
+            <p>Cantidad de personas: {{ reservationPack.form.personsCount }}</p>
+            <p>Habitaciones reservadas: {{ reservationPack.form.personsRoom }}</p>
+
+            <hr />
+            <p class="fw-bold">Importe total: {{ reservationPack.total | currency }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+
+  <!-- COMBO -->
+  <ng-container *ngIf="reservationForPackagesCombo && reservationForPackagesCombo.length > 0">
+    <div class="container">
+      <div class="d-flex flex-row flex-wrap gap-3 mt-5">
+        <div
+          class="card border-light mb-3"
+          style="max-width: 21rem"
+          *ngFor="let reservationCombo of reservationForPackagesCombo; let indexD = index"
+        >
+          <div class="card-header fw-bold mb-2 d-flex justify-content-between">
+            <p>Resumen de tu reserva - COMBO</p>
+            <button
+              class="btn btn-danger btn-sm"
+              style="height: 30px"
+              (click)="deleteCard(indexD, 'combo')"
+            >
+              X
+            </button>
+          </div>
+          <div class="card-body">
+            <p>Tipo de reserva: {{ reservationCombo.hotel.type }}</p>
+
+            <p class="fw-bold">Destino: {{ reservationCombo.hotel.country }}</p>
+            <p class="fw-bold">Hotel: {{ reservationCombo.hotel.hotels }}</p>
+            <p>Nombre: {{ reservationCombo.form.name }}</p>
+            <p>Apellido: {{ reservationCombo.form.lastname }}</p>
+            <p>Email: {{ reservationCombo.form.email }}</p>
+            <p>Incluye: {{ reservationCombo.hotel.includes }}</p>
+            <p>Días mínimos: {{ reservationCombo.hotel.minDays }}</p>
+            <p>Días máximos: {{ reservationCombo.hotel.maxDays }}</p>
+
+            <p>Fecha de entrada: {{ reservationCombo.form.dataIn }}</p>
+            <p>Fecha de salida: {{ reservationCombo.form.dataOut }}</p>
+            <p>Cantidad de personas: {{ reservationCombo.form.personsCount }}</p>
+            <p>Habitaciones reservadas: {{ reservationCombo.form.personsRoom }}</p>
+
+            <hr />
+            <p class="fw-bold">Importe total: {{ reservationCombo.total | currency }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+
+  <!-- DESCUENTO -->
+  <ng-container *ngIf="reservationForPackagesDiscount && reservationForPackagesDiscount.length > 0">
+    <div class="container">
+      <div class="d-flex flex-row flex-wrap gap-3 mt-5">
+        <div
+          class="card border-light mb-3"
+          style="max-width: 21rem"
+          *ngFor="let reservationDiscount of reservationForPackagesDiscount; let indexE = index"
+        >
+          <div class="card-header fw-bold mb-2 d-flex justify-content-between">
+            <p>Resumen de tu reserva - DISCOUNT</p>
+            <button
+              class="btn btn-danger btn-sm"
+              style="height: 30px"
+              (click)="deleteCard(indexE, 'discount')"
+            >
+              X
+            </button>
+          </div>
+          <div class="card-body">
+            <p>Tipo de reserva: {{ reservationDiscount.hotel.type }}</p>
+
+            <p class="fw-bold">Destino: {{ reservationDiscount.hotel.country }}</p>
+            <p class="fw-bold">Hotel: {{ reservationDiscount.hotel.hotels }}</p>
+            <p>Nombre: {{ reservationDiscount.form.name }}</p>
+            <p>Apellido: {{ reservationDiscount.form.lastname }}</p>
+            <p>Email: {{ reservationDiscount.form.email }}</p>
+            <p>Incluye: {{ reservationDiscount.hotel.includes }}</p>
+            <p>Días mínimos: {{ reservationDiscount.hotel.minDays }}</p>
+            <p>Días máximos: {{ reservationDiscount.hotel.maxDays }}</p>
+
+            <p>Fecha de entrada: {{ reservationDiscount.form.dataIn }}</p>
+            <p>Fecha de salida: {{ reservationDiscount.form.dataOut }}</p>
+            <p>Cantidad de personas: {{ reservationDiscount.form.personsCount }}</p>
+            <p>Habitaciones reservadas: {{ reservationDiscount.form.personsRoom }}</p>
+
+            <hr />
+            <p class="fw-bold">Importe total: {{ reservationDiscount.total | currency }}</p>
           </div>
         </div>
       </div>
