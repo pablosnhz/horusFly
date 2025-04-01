@@ -1,23 +1,22 @@
-<div class="container mt-3" *ngIf="infoFlights$ | async as flyList">
-  <p class="fs-2">Tu reserva de vuelo esta casi listo</p>
-  <form [formGroup]="form" (submit)="formDatosFly()">
+<div class="container mt-3" *ngIf="infoPackages$ | async as packages">
+  <p class="fs-2">Completa tus datos para finalizar con la reserva</p>
+  <form [formGroup]="form" (submit)="formDatos()">
     <div class="row">
       <div class="col-md-8 col-12">
         <div class="card mt-3 p-4">
-          <div class="mb-3 fw-bold fs-4">
-            <div class="d-flex gap-2">
-              <p>Aerolinea: {{ flyList.airline }}</p>
-              <img [src]="[flyList.airplaneIcon]" alt="logo" height="30" />
-            </div>
-            <p>Sale desde/hasta: {{ flyList.fromCity }}</p>
-            <div *ngIf="flyList.toCity">
-              <p>Vuelta desde/hasta: {{ flyList.toCity }}</p>
-            </div>
+          <div class="mb-3 fs-5">
+            <p>Tipo de servicio: {{ packagesData.comboType }}</p>
+            <p class="fw-bold">Datos de tu reserva: {{ packagesData.destinations }}</p>
+            <p class="fw-bold">Hotel: {{ packagesData.hotel }}</p>
+            <p class="fw-bold">
+              Cantidad de dias: {{ packagesData.maxDays }} DIAS y {{ packagesData.minDays }} NOCHES
+            </p>
+            <p>{{ packages.includes }}</p>
           </div>
         </div>
         <div class="card mt-3 p-4">
           <div class="mb-3">
-            <p>Cantidad de equipaje permitido por persona: {{ flyList.passengers }}</p>
+            <p>Cantidad de equipaje permitido: 2</p>
           </div>
 
           <div class="mb-3 d-flex gap-2">
@@ -29,11 +28,6 @@
                 aria-label="Default select example"
               >
                 <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
               </select>
               <p
                 *ngIf="
@@ -45,19 +39,37 @@
                 Debes seleccionar una opcion si deseas continuar.
               </p>
             </div>
+
+            <div>
+              <p>Cantidad habitaciones</p>
+              <select
+                formControlName="personsRoom"
+                class="form-select"
+                aria-label="Default select example"
+              >
+                <option value="1">1</option>
+              </select>
+              <p
+                *ngIf="
+                  form.get('personsRoom')?.hasError('required') && form.get('personsRoom')?.touched
+                "
+                style="color: red"
+              >
+                Debes seleccionar una opcion si deseas continuar.
+              </p>
+            </div>
           </div>
 
           <div class="card-body">
             <div class="d-flex gap-2">
               <div>
-                <label for="fecha">Fecha de Ida:</label>
+                <label for="fecha">Fecha de Entrada:</label>
                 <input
                   type="date"
                   class="form-control"
                   id="fecha-inicio"
                   name="dataIn"
                   formControlName="dataIn"
-                  (change)="calculatedTotal(flyList)"
                   min="2025-04-01"
                   max="2025-12-31"
                 />
@@ -68,18 +80,18 @@
                   Debes seleccionar una fecha si deseas continuar.
                 </p>
               </div>
-              <div *ngIf="flyList.toCity">
-                <label for="fecha">Fecha de Vuelta:</label>
+              <div>
+                <label for="fecha">Fecha de Salida:</label>
                 <input
                   type="date"
                   class="form-control"
                   id="fecha-fin"
                   name="dataOut"
                   formControlName="dataOut"
-                  (change)="calculatedTotal(flyList)"
-                  min="2025-04-01"
-                  max="2026-12-31"
+                  [min]="minDateOut"
+                  [max]="maxDateOut"
                 />
+
                 <p
                   *ngIf="form.get('dataOut')?.hasError('required') && form.get('dataOut')?.touched"
                   style="color: red"
@@ -150,7 +162,9 @@
             <p
               *ngIf="form.get('phone')?.hasError('required') && form.get('phone')?.touched"
               style="color: red"
-            ></p>
+            >
+              El Phone es obligatorio si deseas continuar.
+            </p>
           </div>
         </div>
       </div>
@@ -158,23 +172,20 @@
         <div class="card mt-3">
           <div class="card-header fw-bold">Total</div>
           <div class="card-body d-flex justify-content-between">
-            <p class="card-title">Precio total por personas:</p>
-            <p class="fw-bold">{{ flyList.price | currency }}</p>
+            <p class="card-title">Precio total:</p>
+            <p class="fw-bold">{{ packages.price | currency }}</p>
           </div>
           <div class="card-body d-flex justify-content-between">
             <p class="card-title">Fecha seleccionada:</p>
-            <p class="fw-bold">
-              Sale el {{ dataIn }}
-              <span *ngIf="flyList.toCity">, vuelve el {{ dataOut }}</span>
-            </p>
+            <p class="fw-bold">Desde {{ this.dataIn }}, hasta {{ this.dataOut }}</p>
           </div>
           <div class="card-body d-flex justify-content-between">
             <p class="card-title">Impuestos IVA:</p>
-            <p class="fw-bold">$50.00</p>
+            <p class="fw-bold">$40.00</p>
           </div>
           <div class="card-body d-flex justify-content-between">
             <p class="card-title fw-bold">TOTAL</p>
-            <p class="fw-bold">{{ totalPrice | currency }}</p>
+            <p class="fw-bold">{{ packages.price + 40 | currency }}</p>
           </div>
 
           <div class="card-body text-center">
@@ -183,6 +194,7 @@
               data-bs-toggle="modal"
               data-bs-target="#exampleModal"
               [disabled]="form.invalid || !$user()"
+              (click)="formDatos()"
             >
               Confirmar Reservación
             </button>
@@ -229,7 +241,6 @@
                 </div>
               </div>
             </div>
-
             <p *ngIf="!$user()">Para finalizar la compra acceda a su cuenta</p>
             <img
               src="https://www.comafi.com.ar/Multimedios/imgs/900_540.jpg"

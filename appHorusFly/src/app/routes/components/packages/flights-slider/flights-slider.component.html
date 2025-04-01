@@ -10,11 +10,12 @@
     routerLink="/details"
   >
     <swiper-slide *ngFor="let item of dataFlights">
-      <div class="container" [routerLink]="[item.id]">
+      <div class="container" [routerLink]="['combo', item.id]">
         <div class="card mx-auto" style="max-width: 350px">
           <img [src]="item.image" class="card" alt="Imagen" />
 
           <div class="card-body">
+            <span class="text-img">{{ item.maxDays }} DÍAS / {{ item.minDays }} NOCHES</span>
             <p class="card-text fw-bold">{{ item.comboType }}</p>
             <h5 class="card-title">
               {{ item.destinations }}{{ item.destinationsTwo ? ' + ' + item.destinationsTwo : '' }}
