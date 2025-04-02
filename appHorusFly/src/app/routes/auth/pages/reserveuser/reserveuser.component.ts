@@ -61,7 +61,6 @@ export class ReserveuserComponent implements OnInit {
       this.reservationForPackagesPack.splice(index, 1);
       sessionStorage.setItem('formPackages', JSON.stringify(this.reservationForPackagesPack));
     }
-
     if (type === 'combo') {
       this.reservationForPackagesCombo.splice(index, 1);
       sessionStorage.setItem('formCombo', JSON.stringify(this.reservationForPackagesCombo));
