@@ -51,16 +51,6 @@ export class CheckoutPackagesComponent {
   }
 
   ngOnInit(): void {
-    this.infoPackages$ = this.packageService.obtenerPackages().pipe(
-      map((data) => {
-        const packagesData = data.value.find(
-          (packagesId: any) => packagesId.id === this.idPackages,
-        );
-        this.packagesData = packagesData;
-        return packagesData;
-      }),
-    );
-
     this.infoCombo$ = this.packageService.obtenerFlights().pipe(
       map((data) => {
         const packagesDataCombo = data.value.find(
@@ -72,32 +62,54 @@ export class CheckoutPackagesComponent {
         return packagesDataCombo;
       }),
     );
+    this.infoPackages$ = this.packageService.obtenerPackages().pipe(
+      map((data) => {
+        const packagesData = data.value.find(
+          (packagesId: any) => packagesId.id === this.idPackages,
+        );
+        console.log('datos de checkout PACKAGES', data);
+
+        this.packagesData = packagesData;
+        return packagesData;
+      }),
+    );
 
     this.infoDiscount$ = this.packageService.obtenerDiscount().pipe(
       map((data) => {
         const packagesDataDiscount = data.value.find(
           (packagesDataDiscountId: any) => packagesDataDiscountId.id === this.idDiscount,
         );
-        this.packagesComboData = packagesDataDiscount;
+        console.log('datos de checkout DISCOUNT', data);
+
+        this.packagesDiscountData = packagesDataDiscount;
         return packagesDataDiscount;
       }),
     );
 
-    // hacemos la deteccion del calculatedTotal que no da el valor final del price
+    // hacemos la deteccion del calculatedTotal que nos da el valor final del price
     this.form
       .get('dataIn')
       ?.valueChanges.subscribe(() =>
         this.calculatedTotal(
-          this.packagesData | this.packagesComboData | this.packagesDiscountData,
+          this.packagesData || this.packagesComboData || this.packagesDiscountData,
         ),
       );
     this.form
       .get('dataOut')
       ?.valueChanges.subscribe(() =>
         this.calculatedTotal(
-          this.packagesData | this.packagesComboData | this.packagesDiscountData,
+          this.packagesData || this.packagesComboData || this.packagesDiscountData,
         ),
       );
+
+    // detectamos la fecha para la interpolacion en la parte del tootal
+    this.form.get('dataIn')?.valueChanges.subscribe((value) => {
+      this.dataIn = value;
+    });
+
+    this.form.get('dataOut')?.valueChanges.subscribe((value) => {
+      this.dataOut = value;
+    });
   }
 
   formDatos() {
@@ -107,37 +119,51 @@ export class CheckoutPackagesComponent {
       return;
     }
 
+    let selectedPackage = null;
+    if (this.packagesDiscountData) {
+      selectedPackage = {
+        key: 'formDiscount',
+        data: this.packagesDiscountData,
+      };
+    } else if (this.packagesComboData) {
+      selectedPackage = {
+        key: 'formCombo',
+        data: this.packagesComboData,
+      };
+    } else if (this.packagesData) {
+      selectedPackage = {
+        key: 'formPackages',
+        data: this.packagesData,
+      };
+    }
+
+    if (!selectedPackage) {
+      return;
+    }
+
     const formCombined = {
       form: this.form.value,
       total: this.totalPrice,
       hotel: {
-        type: this.packagesData.comboType,
-        country: this.packagesData.destinations,
-        hotels: this.packagesData.hotel,
-        minDays: this.packagesData.minDays,
-        maxDays: this.packagesData.maxDays,
-        includes: this.packagesData.includes,
+        type: selectedPackage.data.comboType,
+        country: selectedPackage.data.destinations,
+        countryTwo: selectedPackage.data.destinationsTwo,
+        hotels: selectedPackage.data.hotel,
+        minDays: selectedPackage.data.minDays,
+        maxDays: selectedPackage.data.maxDays,
+        includes: selectedPackage.data.includes,
       },
     };
-    let combinacionArray = JSON.parse(sessionStorage.getItem('formPackages') || '[]');
-    let combinacionArrayCombo = JSON.parse(sessionStorage.getItem('formCombo') || '[]');
-    let combinacionArrayDiscount = JSON.parse(sessionStorage.getItem('formDiscount') || '[]');
 
-    const exists = combinacionArray.some(
+    let storedArray = JSON.parse(sessionStorage.getItem(selectedPackage.key) || '[]');
+
+    const exists = storedArray.some(
       (item: any) => JSON.stringify(item) === JSON.stringify(formCombined),
     );
 
     if (!exists) {
-      combinacionArray.push(formCombined);
-      sessionStorage.setItem('formPackages', JSON.stringify(combinacionArray));
-    }
-    if (!exists) {
-      combinacionArrayCombo.push(formCombined);
-      sessionStorage.setItem('formCombo', JSON.stringify(combinacionArrayCombo));
-    }
-    if (!exists) {
-      combinacionArrayDiscount.push(formCombined);
-      sessionStorage.setItem('formDiscount', JSON.stringify(combinacionArrayDiscount));
+      storedArray.push(formCombined);
+      sessionStorage.setItem(selectedPackage.key, JSON.stringify(storedArray));
     }
 
     this.form.reset();
@@ -174,8 +200,13 @@ export class CheckoutPackagesComponent {
       const dateReturn = new Date(dateOutControl.value);
       const timeDif = dateReturn.getTime() - dateGo.getTime();
       const daysDif = Math.ceil(timeDif / (1000 * 60 * 60 * 24));
-
+    }
+    if (this.packagesData) {
       this.totalPrice = this.packagesData.price + 40;
+    } else if (this.packagesComboData) {
+      this.totalPrice = this.packagesComboData.price + 40;
+    } else if (this.packagesDiscountData) {
+      this.totalPrice = this.packagesDiscountData.price + 40;
     }
   }
 }

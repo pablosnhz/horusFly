@@ -107,16 +107,11 @@ export class CheckoutFlightsComponent implements OnInit {
 
     if (!fly || !dateIn) return;
 
-    const dateGo = new Date(dateIn);
-    let totalDays = 1;
-
     if (dateOut) {
-      const dateReturn = new Date(dateOut);
-      const timeDif = dateReturn.getTime() - dateGo.getTime();
-      totalDays = Math.ceil(timeDif / (1000 * 60 * 60 * 24));
+      this.totalPrice = fly.price * 2 + 50.0;
+    } else {
+      this.totalPrice = fly.price + 50.0;
     }
-
-    this.totalPrice = totalDays * fly.price + 50.0;
   }
 
   // para el caso de que fly.tocity este o no, hacemos un condicional de la validacion

@@ -1,15 +1,22 @@
-<div class="container mt-3" *ngIf="infoPackages$ | async as packages">
+<div
+  class="container mt-3"
+  *ngIf="(infoCombo$ | async) || (infoPackages$ | async) || (infoDiscount$ | async) as packages"
+>
   <p class="fs-2">Completa tus datos para finalizar con la reserva</p>
   <form [formGroup]="form" (submit)="formDatos()">
     <div class="row">
       <div class="col-md-8 col-12">
         <div class="card mt-3 p-4">
           <div class="mb-3 fs-5">
-            <p>Tipo de servicio: {{ packagesData.comboType }}</p>
-            <p class="fw-bold">Datos de tu reserva: {{ packagesData.destinations }}</p>
-            <p class="fw-bold">Hotel: {{ packagesData.hotel }}</p>
+            <p>Tipo de servicio: {{ packages.comboType }}</p>
             <p class="fw-bold">
-              Cantidad de dias: {{ packagesData.maxDays }} DIAS y {{ packagesData.minDays }} NOCHES
+              Datos de tu reserva: {{ packages.destinations
+              }}{{ packages.destinationsTwo ? ' + ' + packages.destinationsTwo : '' }}
+            </p>
+
+            <p *ngIf="packages.hotel" class="fw-bold">Hotel: {{ packages.hotel }}</p>
+            <p class="fw-bold">
+              Cantidad de dias: {{ packages.maxDays }} DIAS y {{ packages.minDays }} NOCHES
             </p>
             <p>{{ packages.includes }}</p>
           </div>

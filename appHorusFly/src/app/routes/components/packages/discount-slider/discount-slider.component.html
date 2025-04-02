@@ -34,7 +34,12 @@
 
           <div class="card-footer bg-white border">
             <p>Precio final {{ item.passagers }} personas</p>
-            <p class="fw-bold">{{ item.price | currency }}</p>
+            <div class="d-flex gap-2">
+              <p class="fw-bold">{{ item.price | currency }}</p>
+              <p style="text-decoration: line-through; color: red" class="fw-bold">
+                {{ item.previousPrice | currency }}
+              </p>
+            </div>
           </div>
         </div>
       </div>

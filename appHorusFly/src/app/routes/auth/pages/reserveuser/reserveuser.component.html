@@ -2,9 +2,11 @@
 
 <ng-container
   *ngIf="
-    (reservationDataAccommodation && reservationDataAccommodation.length > 0) ||
-      (reservationDataFly && reservationDataFly.length > 0) ||
-      (reservationForPackagesPack && reservationForPackagesPack.length > 0);
+    reservationDataAccommodation?.length ||
+      reservationDataFly?.length ||
+      reservationForPackagesPack?.length ||
+      reservationForPackagesCombo?.length ||
+      reservationForPackagesDiscount?.length;
     else nocontent
   "
 >
@@ -148,8 +150,10 @@
           <div class="card-body">
             <p>Tipo de reserva: {{ reservationCombo.hotel.type }}</p>
 
-            <p class="fw-bold">Destino: {{ reservationCombo.hotel.country }}</p>
-            <p class="fw-bold">Hotel: {{ reservationCombo.hotel.hotels }}</p>
+            <p class="fw-bold">
+              Destino: {{ reservationCombo.hotel.country }} +
+              {{ reservationCombo.hotel.countryTwo }}
+            </p>
             <p>Nombre: {{ reservationCombo.form.name }}</p>
             <p>Apellido: {{ reservationCombo.form.lastname }}</p>
             <p>Email: {{ reservationCombo.form.email }}</p>
@@ -193,7 +197,6 @@
             <p>Tipo de reserva: {{ reservationDiscount.hotel.type }}</p>
 
             <p class="fw-bold">Destino: {{ reservationDiscount.hotel.country }}</p>
-            <p class="fw-bold">Hotel: {{ reservationDiscount.hotel.hotels }}</p>
             <p>Nombre: {{ reservationDiscount.form.name }}</p>
             <p>Apellido: {{ reservationDiscount.form.lastname }}</p>
             <p>Email: {{ reservationDiscount.form.email }}</p>
