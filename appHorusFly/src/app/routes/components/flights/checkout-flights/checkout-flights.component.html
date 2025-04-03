@@ -4,15 +4,16 @@
     <div class="row">
       <div class="col-md-8 col-12">
         <div class="card mt-3 p-4">
-          <div class="mb-3 fw-bold fs-4">
-            <div class="d-flex gap-2">
+          <div class="mb-3 fs-4">
+            <div class="d-flex gap-2 fw-bold">
               <p>Aerolinea: {{ flyList.airline }}</p>
               <img [src]="[flyList.airplaneIcon]" alt="logo" height="30" />
             </div>
-            <p>Sale desde/hasta: {{ flyList.fromCity }}</p>
+            <p class="fw-bold">Sale desde/hasta: {{ flyList.fromCity }}</p>
             <div *ngIf="flyList.toCity">
-              <p>Vuelta desde/hasta: {{ flyList.toCity }}</p>
+              <p class="fw-bold">Vuelta desde/hasta: {{ flyList.toCity }}</p>
             </div>
+            <p>Incluye: {{ flyList.includes }}</p>
           </div>
         </div>
         <div class="card mt-3 p-4">

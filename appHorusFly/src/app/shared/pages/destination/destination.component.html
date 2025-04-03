@@ -1,55 +1,53 @@
 <div class="d-flex justify-content-center background-img">
-  <div>
-    <div class="form-body">
-      <div class="row">
-        <div class="form-holder">
-          <div class="form-content">
-            <div class="form-items">
-              <h3>What will be your next destination?</h3>
-              <p>choose your destination.</p>
-              <form class="requires-validation d-md-flex gap-3" novalidate>
-                <div class="col-md-3">
-                  <input class="form-control" type="text" name="name" placeholder="from" required />
-                  <div class="valid-feedback">Des</div>
-                  <div class="invalid-feedback">Username field cannot be blank!</div>
-                </div>
+  <div class="form-body">
+    <div class="row">
+      <div class="form-holder">
+        <div class="form-content">
+          <div class="form-items">
+            <h3>What will be your next destination?</h3>
+            <p>choose your destination.</p>
+            <form class="requires-validation d-md-flex gap-3" novalidate>
+              <div class="col-md-3">
+                <input class="form-control" type="text" name="name" placeholder="Lugar" required />
+                <div class="valid-feedback">Des</div>
+                <div class="invalid-feedback">Username field cannot be blank!</div>
+              </div>
 
-                <div class="col-md-3">
-                  <input
-                    class="form-control"
-                    type="email"
-                    name="email"
-                    placeholder="from"
-                    required
+              <div class="col-md-3">
+                <select class="form-select mt-3" required>
+                  <option selected disabled value="">ida - ida/vuelta</option>
+                  <option value="1">IDA</option>
+                  <option value="2">IDA - VUELTA</option>
+                </select>
+                <div class="valid-feedback">You selected a position!</div>
+                <div class="invalid-feedback">Please select a position!</div>
+              </div>
+
+              <div class="col-md-3">
+                <select class="form-select mt-3" required>
+                  <option selected disabled value="">Rating</option>
+                  <option value="1">⭐</option>
+                  <option value="2">⭐⭐</option>
+                  <option value="3">⭐⭐⭐</option>
+                  <option value="4">⭐⭐⭐⭐</option>
+                  <option value="5">⭐⭐⭐⭐⭐</option>
+                </select>
+                <div class="valid-feedback">You selected a position!</div>
+                <div class="invalid-feedback">Please select a position!</div>
+              </div>
+
+              <div class="form-button mt-3">
+                <button id="submit" type="submit" class="btn btn-primary rounded-pill">
+                  <img
+                    src="https://img.icons8.com/?size=100&id=59878&format=png&color=000000"
+                    width="20px"
+                    height="20px"
+                    alt=""
                   />
-                  <div class="valid-feedback">Email field is valid!</div>
-                  <div class="invalid-feedback">Email field cannot be blank!</div>
-                </div>
-
-                <div class="col-md-3">
-                  <select class="form-select mt-3" required>
-                    <option selected disabled value="">Position</option>
-                    <option value="option1">option1</option>
-                    <option value="option2">option2</option>
-                    <option value="option3">option3</option>
-                  </select>
-                  <div class="valid-feedback">You selected a position!</div>
-                  <div class="invalid-feedback">Please select a position!</div>
-                </div>
-
-                <div class="form-button mt-3">
-                  <button id="submit" type="submit" class="btn btn-primary rounded-pill">
-                    <img
-                      src="https://img.icons8.com/?size=100&id=59878&format=png&color=000000"
-                      width="20px"
-                      height="20px"
-                      alt=""
-                    />
-                    Search...
-                  </button>
-                </div>
-              </form>
-            </div>
+                  Search...
+                </button>
+              </div>
+            </form>
           </div>
         </div>
       </div>

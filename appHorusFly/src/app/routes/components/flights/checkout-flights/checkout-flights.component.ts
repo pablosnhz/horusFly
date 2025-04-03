@@ -38,15 +38,6 @@ export class CheckoutFlightsComponent implements OnInit {
       phone: ['', Validators.required],
       personsCount: ['', Validators.required],
     });
-
-    // const formCombined = {
-    //   form: this.form.value,
-    //   total: this.totalPrice,
-    //   hotel: {
-    //     city: this.flyData.city,
-    //     country: this.flyData.country,
-    //     name: this.flyData.name,
-    //   },
   }
 
   ngOnInit(): void {
