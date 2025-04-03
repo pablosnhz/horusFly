@@ -15,7 +15,9 @@
       <li routerLink="/auth/login">Login</li>
     </ul>
     <div *ngIf="$user()" class="d-flex gap-2">
-      <p class="h5 mt-1" role="button">Bienvenido {{ $userName() }}</p>
+      <p class="h5 mt-1 d-none d-md-inline" role="button">Bienvenido {{ $userName() }}</p>
+      <p class="h5 mt-1 d-md-none" role="button">{{ $userName() }}</p>
+
       <a [routerLink]="['/auth/profile/reserve']">
         <img
           src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
@@ -24,6 +26,7 @@
           alt="profile"
         />
       </a>
+
       <button
         (click)="logout()"
         style="background: none; border: none; padding: 0; cursor: pointer"

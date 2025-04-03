@@ -1,8 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700;900&display=swap');
 
-*, body {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 400;
+*,
+body {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
 }
 
 .form-holder .form-content {
@@ -90,7 +91,6 @@
   }
 }
 
-
 @media (max-width: 576px) {
   .form-content .form-items {
     width: 100%;
@@ -128,14 +128,12 @@
   }
 }
 
-
-
 .rotate-img {
   transform: rotate(180deg);
 }
 
-
 // icon
 .icon-size img {
-  filter: brightness(0) saturate(100%) invert(40%) sepia(94%) saturate(500%) hue-rotate(95deg) brightness(90%) contrast(100%);
+  filter: brightness(0) saturate(100%) invert(40%) sepia(94%) saturate(500%) hue-rotate(95deg)
+    brightness(90%) contrast(100%);
 }

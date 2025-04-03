@@ -10,8 +10,17 @@
           <img [src]="fly.airplaneIcon" width="24" height="24" alt="suitcase" />
           {{ fly.airline }}
         </div>
+        <div class="p-3 p-sm-2 w-20 col-lg-2 col-md-6 col-6 order-md-1 text-center icon-size">
+          <img
+            *ngFor="let suitcase of [].constructor(fly.suitcases); let i = index"
+            src="https://img.icons8.com/?size=100&id=S7Ih1iuIPEbW&format=png&color=000000"
+            width="24"
+            height="24"
+            alt="suitcase"
+          />
+        </div>
 
-        <div class="w-20 col-lg-2 col-md-4 col-3 order-md-2">
+        <div class="w-20 col-lg-2 col-md-4 col-4 order-md-2">
           <div class="d-flex gap-1 mt-2">
             <img
               src="https://img.icons8.com/?size=100&id=2320&format=png&color=000000"
@@ -36,18 +45,6 @@
             <p class="mb-0 fw-bold responsive-text">Vuelta</p>
           </div>
           <p class="mb-0">{{ fly.toCity }}</p>
-        </div>
-
-        <div
-          class="p-3 w-20 col-lg-2 col-sm-2 col-md-2 col-3 order-md-2 text-center d-flex icon-size"
-        >
-          <img
-            *ngFor="let suitcase of [].constructor(fly.suitcases); let i = index"
-            src="https://img.icons8.com/?size=100&id=S7Ih1iuIPEbW&format=png&color=000000"
-            width="24"
-            height="24"
-            alt="suitcase"
-          />
         </div>
 
         <div class="p-3 p-sm-2 w-20 col-lg-2 col-md-12 col-12 order-md-3 custom-layout">

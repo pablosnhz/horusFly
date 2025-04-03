@@ -1,11 +1,8 @@
 <app-top-bar></app-top-bar>
-<div class="container wrapper d-flex align-items-stretch">
-  <div class="d-flex flex-column flex-shrink-0 p-3" style="width: 280px">
-    <a
-      href="/"
-      class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none"
-    >
-      <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
+<div class="container wrapper d-flex flex-column flex-md-row align-items-stretch">
+  <div class="d-none d-md-flex flex-column flex-shrink-0 p-3" style="width: 280px">
+    <a href="/" class="d-flex align-items-center mb-3 me-md-auto link-dark text-decoration-none">
+      <svg class="bi me-2" width="62" height="32"><use xlink:href="#bootstrap"></use></svg>
       <span class="fs-4">Datos</span>
     </a>
     <hr />
@@ -14,26 +11,47 @@
         <a
           [routerLink]="['/auth/profile/reserve']"
           class="nav-link link-dark"
-          aria-current="page"
           routerLinkActive="text-decoration-underline"
         >
-          <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"></use></svg>
+          <svg class="bi me-2" width="52" height="24"><use xlink:href="#home"></use></svg>
           Reservas
         </a>
       </li>
       <li>
         <a
           [routerLink]="['/auth/profile/user']"
-          routerLinkActive="text-decoration-underline"
           class="nav-link link-dark"
+          routerLinkActive="text-decoration-underline"
         >
-          <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
+          <svg class="bi me-2" width="52" height="24"><use xlink:href="#speedometer2"></use></svg>
           Tus datos
         </a>
       </li>
     </ul>
   </div>
-  <div class="conditional">
+
+  <!-- moble -->
+  <div class="d-flex d-md-none justify-content-around w-100 bg-white border-bottom py-2">
+    <a
+      [routerLink]="['/auth/profile/reserve']"
+      class="nav-link link-dark text-center"
+      routerLinkActive="text-decoration-underline"
+    >
+      <svg class="bi" width="24" height="24"><use xlink:href="#home"></use></svg>
+      <p class="mb-0 small">Reservas</p>
+    </a>
+    <span class="fs-4">Datos</span>
+    <a
+      [routerLink]="['/auth/profile/user']"
+      class="nav-link link-dark text-center"
+      routerLinkActive="text-decoration-underline"
+    >
+      <svg class="bi" width="24" height="24"><use xlink:href="#speedometer2"></use></svg>
+      <p class="mb-0 small">Tus datos</p>
+    </a>
+  </div>
+
+  <div class="w-100 p-3">
     <router-outlet></router-outlet>
   </div>
 </div>
