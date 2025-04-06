@@ -41,7 +41,7 @@ export class CheckoutAccomodationComponent {
   }
 
   ngOnInit(): void {
-    this.infoHotel$ = this.acService.getInfo().pipe(
+    this.infoHotel$ = this.acService.getInfoHotel().pipe(
       map((data) => {
         const hotel = data.value.find((hotel: any) => hotel.idHotel === this.idHotels);
         this.hotelData = hotel;

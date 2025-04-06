@@ -17,7 +17,7 @@ export class AccomodationSliderComponent implements OnInit {
   }
 
   obteniendoDatos() {
-    this.acService.getInfo().subscribe((datos) => {
+    this.acService.getInfoHotel().subscribe((datos) => {
       this.data = datos.value;
       // console.log(`obteniendo lista de hoteles`, datos.value);
     });

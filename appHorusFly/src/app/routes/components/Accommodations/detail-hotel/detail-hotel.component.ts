@@ -16,7 +16,7 @@ export class DetailHotelComponent implements OnInit {
 
   ngOnInit(): void {
     this.infoHotel$ = this.acService
-      .getInfo()
+      .getInfoHotel()
       .pipe(map((data) => data.value.find((hotel: any) => hotel.idHotel === this.idHotels)));
   }
 
