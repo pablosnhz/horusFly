@@ -41,9 +41,9 @@ export class CheckoutFlightsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.infoFlights$ = this.flyService.getDatos().pipe(
+    this.infoFlights$ = this.flyService.getDatosFlights().pipe(
       map((data) => {
-        console.log('response data', data);
+        // console.log('response data', data);
 
         const fly = data.value.find((flyList: any) => flyList.idVuelo === this.idFlights);
         this.flyData = fly;
@@ -76,7 +76,7 @@ export class CheckoutFlightsComponent implements OnInit {
         toCity: this.flyData.toCity,
       },
     };
-    console.log('formDatos', formCombined);
+    // console.log('formDatos', formCombined);
 
     let combinacionArray = JSON.parse(sessionStorage.getItem('formFly') || '[]');
 

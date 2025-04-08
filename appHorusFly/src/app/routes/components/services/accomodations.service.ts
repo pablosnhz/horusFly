@@ -11,7 +11,9 @@ export class AccomodationsService {
   private filterSubject = new BehaviorSubject<any>({});
   filter$ = this.filterSubject.asObservable();
 
-  allFlights: any[] = [];
+  resultsFilters: WritableSignal<any[]> = signal([]);
+
+  allHotels: any[] = [];
 
   constructor(private http: HttpClient) {}
 
@@ -19,7 +21,7 @@ export class AccomodationsService {
     this.$loading.set(true);
     return this.http.get<any>(`${environment.apiEndpoints.url}api/hotel/list`).pipe(
       tap((response) => {
-        this.allFlights = response;
+        this.allHotels = response;
       }),
       finalize(() => this.$loading.set(false)),
     );
@@ -35,12 +37,12 @@ export class AccomodationsService {
         const hotel = Array.isArray(data) ? data : data.value || [];
         return hotel.filter((place: any) => {
           const placeCheck =
-            !filters.place || place.city?.toLowerCase().includes(filters.place.toLowerCase());
+            !filters.lugar || place.city?.toLowerCase().includes(filters.lugar.toLowerCase());
           const priceCheck =
-            !filters.price ||
-            (filters.price === '1' && place.price <= 100) ||
-            (filters.price === '2' && place.price > 100 && place.price <= 200) ||
-            (filters.price === '3' && place.price > 300);
+            !filters.precio ||
+            (filters.precio === '1' && place.price <= 100) ||
+            (filters.precio === '2' && place.price > 100 && place.price <= 200) ||
+            (filters.precio === '3' && place.price > 300);
           const ratingCheck = !filters.rating || place.rating == filters.rating;
 
           return placeCheck && priceCheck && ratingCheck;

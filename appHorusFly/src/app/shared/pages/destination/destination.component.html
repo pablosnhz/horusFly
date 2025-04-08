@@ -3,18 +3,29 @@
     <div class="row">
       <div class="form-holder">
         <div class="form-content">
-          <div class="form-items">
-            <h3>What will be your next destination?</h3>
-            <p>choose your destination.</p>
-            <form class="requires-validation d-md-flex gap-3" novalidate>
-              <div class="col-md-3">
-                <input class="form-control" type="text" name="name" placeholder="Lugar" required />
+          <div class="form-items" *ngIf="tipo === 'hotel'">
+            <h3>What will be your next lodging?</h3>
+            <p>choose your lodging.</p>
+            <form
+              [formGroup]="form"
+              class="requires-validation d-md-flex justify-content-md-around gap-3"
+              novalidate
+            >
+              <div class="col-md-4">
+                <input
+                  class="form-control"
+                  type="text"
+                  name="name"
+                  formControlName="lugar"
+                  placeholder="Ciudad"
+                  required
+                />
                 <div class="valid-feedback">Des</div>
                 <div class="invalid-feedback">Username field cannot be blank!</div>
               </div>
 
-              <div class="col-md-3">
-                <select class="form-select mt-3" required>
+              <div class="col-md-4">
+                <select class="form-select mt-3" formControlName="precio" required>
                   <option selected disabled value="">Precio hotel</option>
                   <option value="1">0 - 100</option>
                   <option value="2">100 - 200</option>
@@ -28,7 +39,7 @@
               </div>
 
               <div class="col-md-3">
-                <select class="form-select mt-3" required>
+                <select class="form-select mt-3" formControlName="rating" required>
                   <option selected disabled value="">Rating</option>
                   <option value="1">⭐</option>
                   <option value="2">⭐⭐</option>
@@ -40,7 +51,7 @@
                 <div class="invalid-feedback">Please select a position!</div>
               </div>
 
-              <div class="form-button mt-3">
+              <!-- <div class="form-button mt-3">
                 <button id="submit" type="submit" class="btn btn-primary rounded-pill">
                   <img
                     src="https://img.icons8.com/?size=100&id=59878&format=png&color=000000"
@@ -50,6 +61,51 @@
                   />
                   Search...
                 </button>
+              </div> -->
+            </form>
+          </div>
+
+          <!--! flights -->
+          <div class="form-items" *ngIf="tipo === 'vuelo'">
+            <h3>What will be your next destination?</h3>
+            <p>choose your destination.</p>
+            <form
+              [formGroup]="formFly"
+              class="requires-validation d-md-flex justify-content-md-around gap-3"
+              novalidate
+            >
+              <div class="col-md-4">
+                <input
+                  class="form-control"
+                  type="text"
+                  name="name"
+                  formControlName="aerolinea"
+                  placeholder="Aerolinea"
+                  required
+                />
+                <div class="valid-feedback">Des</div>
+                <div class="invalid-feedback">Username field cannot be blank!</div>
+              </div>
+
+              <div class="col-md-4">
+                <select class="form-select mt-3" formControlName="tipoViaje" required>
+                  <option selected disabled value="">Tipo viaje (ida/vuelta)</option>
+                  <option value="1">IDA</option>
+                  <option value="2">IDA / VUELTA</option>
+                </select>
+                <div class="valid-feedback">You selected a position!</div>
+                <div class="invalid-feedback">Please select a position!</div>
+              </div>
+
+              <div class="col-md-3">
+                <select class="form-select mt-3" formControlName="precio" required>
+                  <option selected disabled value="">Precio</option>
+                  <option value="1">0 - 200</option>
+                  <option value="2">200 - 300</option>
+                  <option value="3">400+</option>
+                </select>
+                <div class="valid-feedback">You selected a position!</div>
+                <div class="invalid-feedback">Please select a position!</div>
               </div>
             </form>
           </div>
@@ -58,3 +114,17 @@
     </div>
   </div>
 </div>
+<button
+  class="btn btn-outline-secondary mt-2"
+  *ngIf="resultsFilters().length > 0 && tipo === 'hotel'"
+  (click)="removeFilters()"
+>
+  Limpiar filtros
+</button>
+<button
+  class="btn btn-outline-secondary mt-2"
+  *ngIf="resultsFiltersFlights().length > 0 && tipo === 'vuelo'"
+  (click)="removeFiltersFly()"
+>
+  Limpiar filtros
+</button>
