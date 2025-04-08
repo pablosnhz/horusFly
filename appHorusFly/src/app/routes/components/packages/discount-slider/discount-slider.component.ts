@@ -18,7 +18,7 @@ export class DiscountSliderComponent implements OnInit {
   datosPackages() {
     this.comboService.obtenerDiscount().subscribe((response) => {
       this.datosDiscount = response.value;
-      console.log(response);
+      // console.log(response);
     });
   }
 

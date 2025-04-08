@@ -18,7 +18,7 @@ export class PackagesSliderComponent implements OnInit {
   datosPackages() {
     this.comboService.obtenerPackages().subscribe((response) => {
       this.datos = response.value;
-      console.log(response);
+      // console.log(response);
     });
   }
 

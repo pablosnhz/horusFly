@@ -3,7 +3,11 @@
 </ng-template>
 
 <div *ngIf="!$loadingFlights(); else loadingFlights">
-  <div class="form-holder" *ngFor="let fly of data()">
+  <div *ngIf="resultsFiltersFly().length > 0">
+    <p class="text-muted text-end">{{ resultsFiltersFly().length }} resultados encontrados</p>
+  </div>
+
+  <div class="form-holder" *ngFor="let fly of resultsFiltersFly()">
     <div class="form-content">
       <div class="form-items d-flex flex-wrap text-dark justify-content-center align-items-center">
         <div class="p-3 p-sm-2 w-20 col-lg-2 col-md-6 col-6 order-md-1 text-center">

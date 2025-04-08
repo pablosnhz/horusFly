@@ -18,7 +18,7 @@ export class FlightsSliderComponent {
   datosFlights() {
     this.comboService.obtenerFlights().subscribe((response) => {
       this.dataFlights = response.value;
-      console.log(response);
+      // console.log(response);
     });
   }
 

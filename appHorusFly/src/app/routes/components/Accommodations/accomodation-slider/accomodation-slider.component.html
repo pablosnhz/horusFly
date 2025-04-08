@@ -5,7 +5,11 @@
 </ng-template>
 
 <div *ngIf="!$loading(); else loadingContent">
-  <div *ngFor="let hotels of data" class="container mt-4 px-4">
+  <div *ngIf="resultsFilters().length > 0">
+    <p class="text-muted text-end">{{ resultsFilters().length }} resultados encontrados</p>
+  </div>
+
+  <div *ngFor="let hotels of resultsFilters()" class="container mt-4 px-4">
     <div class="row border-lg background-color">
       <div class="col-lg-4 col-md-12 p-sm-0 border-lg">
         <img [src]="hotels.image" alt="Imagen del hotel" />

@@ -56,7 +56,7 @@ export class CheckoutPackagesComponent {
         const packagesDataCombo = data.value.find(
           (packagesDataComboId: any) => packagesDataComboId.id === this.idCombo,
         );
-        console.log('datos de checkout COMBO', data);
+        // console.log('datos de checkout COMBO', data);
 
         this.packagesComboData = packagesDataCombo;
         return packagesDataCombo;
@@ -67,7 +67,7 @@ export class CheckoutPackagesComponent {
         const packagesData = data.value.find(
           (packagesId: any) => packagesId.id === this.idPackages,
         );
-        console.log('datos de checkout PACKAGES', data);
+        // console.log('datos de checkout PACKAGES', data);
 
         this.packagesData = packagesData;
         return packagesData;
@@ -79,7 +79,7 @@ export class CheckoutPackagesComponent {
         const packagesDataDiscount = data.value.find(
           (packagesDataDiscountId: any) => packagesDataDiscountId.id === this.idDiscount,
         );
-        console.log('datos de checkout DISCOUNT', data);
+        // console.log('datos de checkout DISCOUNT', data);
 
         this.packagesDiscountData = packagesDataDiscount;
         return packagesDataDiscount;

@@ -8,18 +8,18 @@ import { AccomodationsService } from '../../services/accomodations.service';
 })
 export class AccomodationSliderComponent implements OnInit {
   $loading: Signal<boolean> = this.acService.$loading;
-  data: any;
+  resultsFilters = this.acService.resultsFilters;
 
   constructor(private acService: AccomodationsService) {}
 
   ngOnInit(): void {
-    this.obteniendoDatos();
+    this.acService.getInfoHotel().subscribe();
   }
 
-  obteniendoDatos() {
-    this.acService.getInfoHotel().subscribe((datos) => {
-      this.data = datos.value;
-      // console.log(`obteniendo lista de hoteles`, datos.value);
-    });
-  }
+  // obteniendoDatos() {
+  //   this.acService.getInfoHotel().subscribe((datos) => {
+  //     this.data = datos.value;
+  //     // console.log(`obteniendo lista de hoteles`, datos.value);
+  //   });
+  // }
 }
