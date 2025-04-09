@@ -11,7 +11,7 @@
       />
     </div>
     <ul class="d-flex gap-3 pointer list-unstyled mt-3" role="button">
-      <li>Help</li>
+      <li routerLink="/qa">Help</li>
     </ul>
   </div>
 </nav>
@@ -30,6 +30,7 @@
             formControlName="email"
             placeholder="Email"
             required
+            autocomplete
           />
         </div>
         <div class="mb-3">
@@ -39,6 +40,7 @@
             formControlName="password"
             placeholder="Password"
             required
+            autocomplete
           />
         </div>
         <button class="btn btn-primary w-100 mb-2">Ingresar</button>

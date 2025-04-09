@@ -5,6 +5,10 @@
 </ng-template>
 
 <div *ngIf="!$loading(); else loadingContent">
+  <ng-template #loading>
+    <p>Para obtener resultados haga la busqueda por medio del filtro</p>
+  </ng-template>
+
   <div *ngIf="resultsFilters().length > 0">
     <p class="text-muted text-end">{{ resultsFilters().length }} resultados encontrados</p>
   </div>
