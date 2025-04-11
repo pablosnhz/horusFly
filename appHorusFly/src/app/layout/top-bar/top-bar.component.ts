@@ -1,11 +1,13 @@
 import { Component, OnInit, Signal } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterLink, RouterModule } from '@angular/router';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
 
 @Component({
   selector: 'app-top-bar',
   templateUrl: './top-bar.component.html',
   styleUrls: ['./top-bar.component.scss'],
+  imports: [RouterLink, RouterModule],
+  standalone: true,
 })
 export class TopBarComponent implements OnInit {
   detailRoute = false;

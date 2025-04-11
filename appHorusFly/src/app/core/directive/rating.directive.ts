@@ -2,6 +2,7 @@ import { Directive, ElementRef, Input, Renderer2, OnInit } from '@angular/core';
 
 @Directive({
   selector: '[appRating]',
+  standalone: true,
 })
 export class RatingDirective implements OnInit {
   @Input() appRating: number = 0;

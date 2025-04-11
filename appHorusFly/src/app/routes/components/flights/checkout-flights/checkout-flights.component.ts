@@ -1,13 +1,23 @@
 import { Component, Input, numberAttribute, OnInit, SimpleChanges } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import {
+  FormGroup,
+  FormBuilder,
+  Validators,
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import { Observable, map } from 'rxjs';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { AccomodationsService } from '../../services/accomodations.service';
 import { FlightsService } from '../../services/flights.service';
+import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-checkout-flights',
   templateUrl: './checkout-flights.component.html',
+  standalone: true,
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, RouterLink],
   styleUrls: ['./checkout-flights.component.scss'],
 })
 export class CheckoutFlightsComponent implements OnInit {

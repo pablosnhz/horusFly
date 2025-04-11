@@ -1,8 +1,12 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-reserveuser',
   templateUrl: './reserveuser.component.html',
+  standalone: true,
+  imports: [CommonModule, ReactiveFormsModule],
   styleUrls: ['./reserveuser.component.scss'],
 })
 export class ReserveuserComponent implements OnInit {

@@ -1,44 +1,49 @@
 <div class="container-fluid w-100 h-100 mx-auto">
   <swiper-container
-    #swiper
     class="mySwiper"
     pagination="true"
     pagination-clickable="true"
     slides-per-view="4"
     space-between="30"
     free-mode="true"
-    routerLink="/details"
   >
-    <swiper-slide *ngFor="let item of dataFlights">
-      <div class="container" [routerLink]="['combo', item.id]">
-        <div class="card mx-auto" style="max-width: 350px">
-          <img [src]="item.image" class="card" alt="Imagen" />
+    @for (item of dataFlights; track item.id) {
+      <swiper-slide>
+        <div class="container" [routerLink]="['combo', item.id]">
+          <div class="card mx-auto" style="max-width: 350px">
+            <img [src]="item.image" class="card" alt="Imagen" />
 
-          <div class="card-body">
-            <span class="text-img">{{ item.maxDays }} DÍAS / {{ item.minDays }} NOCHES</span>
-            <p class="card-text fw-bold">{{ item.comboType }}</p>
-            <h5 class="card-title">
-              {{ item.destinations }}{{ item.destinationsTwo ? ' + ' + item.destinationsTwo : '' }}
-            </h5>
-            <p class="card-text texto-responsive" *ngIf="!ocultarTexto">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea, vitae quidem.
-            </p>
-          </div>
+            <div class="card-body">
+              <span class="text-img">{{ item.maxDays }} DÍAS / {{ item.minDays }} NOCHES</span>
+              <p class="card-text fw-bold">{{ item.comboType }}</p>
+              <h5 class="card-title">
+                {{ item.destinations
+                }}{{ item.destinationsTwo ? ' + ' + item.destinationsTwo : '' }}
+              </h5>
 
-          <div class="card-body">
-            <p>{{ item.includes }}</p>
-            <p class="card-text">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea, vitae quidem. Velit fuga
-              ratione deleniti, praesentium sit sapiente odio hic voluptatum amet necessitatibus.
-            </p>
-          </div>
+              @if (!ocultarTexto) {
+                <p class="card-text texto-responsive">
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea, vitae quidem.
+                </p>
+              }
+            </div>
 
-          <div class="card-footer bg-white border">
-            <p>Precio final {{ item.passagers }} personas</p>
-            <p class="fw-bold">{{ item.price | currency }}</p>
+            <div class="card-body">
+              <p>{{ item.includes }}</p>
+              <p class="card-text">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea, vitae quidem. Velit
+                fuga ratione deleniti, praesentium sit sapiente odio hic voluptatum amet
+                necessitatibus.
+              </p>
+            </div>
+
+            <div class="card-footer bg-white border">
+              <p>Precio final {{ item.passagers }} personas</p>
+              <p class="fw-bold">{{ item.price | currency }}</p>
+            </div>
           </div>
         </div>
-      </div>
-    </swiper-slide>
+      </swiper-slide>
+    }
   </swiper-container>
 </div>

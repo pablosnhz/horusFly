@@ -1,12 +1,16 @@
 import { Component, Input, numberAttribute } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { map, Observable } from 'rxjs';
 import { PackagesService } from '../../services/packages.service';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
+import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-checkout-packages',
   templateUrl: './checkout-packages.component.html',
+  standalone: true,
+  imports: [CommonModule, ReactiveFormsModule, RouterLink],
   styleUrls: ['./checkout-packages.component.scss'],
 })
 export class CheckoutPackagesComponent {

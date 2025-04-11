@@ -1,5 +1,6 @@
+import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs';
 import { AccomodationsService } from 'src/app/routes/components/services/accomodations.service';
@@ -9,6 +10,8 @@ import { FlightsService } from 'src/app/routes/components/services/flights.servi
   selector: 'app-destination',
   templateUrl: './destination.component.html',
   styleUrls: ['./destination.component.scss'],
+  imports: [CommonModule, ReactiveFormsModule, FormsModule],
+  standalone: true,
 })
 export class DestinationComponent implements OnInit {
   form: FormGroup;

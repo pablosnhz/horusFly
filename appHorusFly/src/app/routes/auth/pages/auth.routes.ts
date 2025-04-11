@@ -8,7 +8,7 @@ import { nouserGuard } from 'src/app/core/guard/no-user.guard';
 import { ReserveuserComponent } from './reserveuser/reserveuser.component';
 import { DatosUserComponent } from './datos-user/datos-user.component';
 
-const routes: Routes = [
+export const AUTH_ROUTES: Routes = [
   {
     path: 'login',
     component: LoginComponent,
@@ -39,9 +39,3 @@ const routes: Routes = [
     redirectTo: 'login',
   },
 ];
-
-@NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule],
-})
-export class AuthRoutingModule {}

@@ -1,10 +1,11 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { Routes } from '@angular/router';
 import { PackagesComponent } from './packages.component';
+import { register } from 'swiper/element/bundle';
 import { DetailPackagesComponent } from './detail-packages/detail-packages.component';
 import { CheckoutPackagesComponent } from './checkout-packages/checkout-packages.component';
+register();
 
-const routes: Routes = [
+export const PACKAGES_ROUTES: Routes = [
   {
     path: '',
     component: PackagesComponent,
@@ -34,9 +35,3 @@ const routes: Routes = [
     component: CheckoutPackagesComponent,
   },
 ];
-
-@NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule],
-})
-export class PackagesRoutingModule {}

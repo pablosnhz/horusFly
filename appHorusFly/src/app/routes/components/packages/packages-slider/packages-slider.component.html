@@ -1,46 +1,49 @@
 <div class="container-fluid w-100 h-100 mx-auto">
   <swiper-container
-    #swiper
     class="mySwiper"
     pagination="true"
     pagination-clickable="true"
     slides-per-view="4"
     space-between="30"
     free-mode="true"
-    routerLink="/details"
   >
-    <swiper-slide *ngFor="let itemPackage of datos">
-      <div class="container" [routerLink]="['paquetes', itemPackage.id]">
-        <div class="card mx-auto" style="max-width: 350px">
-          <img [src]="itemPackage.image" class="card" alt="Imagen" />
-          <div class="card-body">
-            <span class="text-img"
-              >{{ itemPackage.maxDays }} DÍAS / {{ itemPackage.minDays }} NOCHES</span
-            >
-            <p class="card-text fw-bold">{{ itemPackage.comboType }}</p>
-            <h5 class="card-title">
-              {{ itemPackage.destinations
-              }}{{ itemPackage.destinationsTwo ? ' + ' + itemPackage.destinationsTwo : '' }}
-            </h5>
-            <p class="card-text texto-responsive" *ngIf="!ocultarTexto">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea, vitae quidem.
-            </p>
-          </div>
+    @for (itemPackage of datos; track itemPackage.id) {
+      <swiper-slide>
+        <div class="container" [routerLink]="['paquetes', itemPackage.id]">
+          <div class="card mx-auto" style="max-width: 350px">
+            <img [src]="itemPackage.image" class="card" alt="Imagen" />
+            <div class="card-body">
+              <span class="text-img"
+                >{{ itemPackage.maxDays }} DÍAS / {{ itemPackage.minDays }} NOCHES</span
+              >
+              <p class="card-text fw-bold">{{ itemPackage.comboType }}</p>
+              <h5 class="card-title">
+                {{ itemPackage.destinations
+                }}{{ itemPackage.destinationsTwo ? ' + ' + itemPackage.destinationsTwo : '' }}
+              </h5>
+              @if (!ocultarTexto) {
+                <p class="card-text texto-responsive">
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea, vitae quidem.
+                </p>
+              }
+            </div>
 
-          <div class="card-body">
-            <p>{{ itemPackage.includes }}</p>
-            <p class="card-text">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea, vitae quidem. Velit fuga
-              ratione deleniti, praesentium sit sapiente odio hic voluptatum amet necessitatibus.
-            </p>
-          </div>
+            <div class="card-body">
+              <p>{{ itemPackage.includes }}</p>
+              <p class="card-text">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea, vitae quidem. Velit
+                fuga ratione deleniti, praesentium sit sapiente odio hic voluptatum amet
+                necessitatibus.
+              </p>
+            </div>
 
-          <div class="card-footer bg-white border">
-            <p>Precio final {{ itemPackage.passagers }} personas</p>
-            <p class="fw-bold">{{ itemPackage.price | currency }}</p>
+            <div class="card-footer bg-white border">
+              <p>Precio final {{ itemPackage.passagers }} personas</p>
+              <p class="fw-bold">{{ itemPackage.price | currency }}</p>
+            </div>
           </div>
         </div>
-      </div>
-    </swiper-slide>
+      </swiper-slide>
+    }
   </swiper-container>
 </div>

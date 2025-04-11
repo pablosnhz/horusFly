@@ -2,12 +2,22 @@ import { Component, Input, numberAttribute } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { AccomodationsService } from '../../services/accomodations.service';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-checkout-accomodation',
   templateUrl: './checkout-accomodation.component.html',
   styleUrls: ['./checkout-accomodation.component.scss'],
+  standalone: true,
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, RouterLink],
 })
 export class CheckoutAccomodationComponent {
   @Input({ transform: numberAttribute }) idHotels!: number;
