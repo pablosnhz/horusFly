@@ -12,6 +12,7 @@
           [routerLink]="['/auth/profile/reserve']"
           class="nav-link link-dark"
           routerLinkActive="text-decoration-underline"
+          [routerLinkActiveOptions]="{ exact: true }"
         >
           <svg class="bi me-2" width="52" height="24"><use xlink:href="#home"></use></svg>
           Reservas
@@ -22,6 +23,7 @@
           [routerLink]="['/auth/profile/user']"
           class="nav-link link-dark"
           routerLinkActive="text-decoration-underline"
+          [routerLinkActiveOptions]="{ exact: true }"
         >
           <svg class="bi me-2" width="52" height="24"><use xlink:href="#speedometer2"></use></svg>
           Tus datos

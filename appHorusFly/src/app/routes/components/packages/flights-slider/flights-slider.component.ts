@@ -1,12 +1,17 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { PackagesService } from '../../services/packages.service';
+import { RouterLink } from '@angular/router';
+import { CurrencyPipe } from '@angular/common';
 
 @Component({
   selector: 'app-flights-slider',
   templateUrl: './flights-slider.component.html',
+  standalone: true,
+  imports: [RouterLink, CurrencyPipe],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   styleUrls: ['./flights-slider.component.scss'],
 })
-export class FlightsSliderComponent {
+export class FlightsSliderComponent implements OnInit {
   dataFlights: any;
 
   constructor(private comboService: PackagesService) {}

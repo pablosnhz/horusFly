@@ -1,10 +1,24 @@
-import { Component, ElementRef, Input, numberAttribute, OnInit, ViewChild } from '@angular/core';
+import {
+  Component,
+  CUSTOM_ELEMENTS_SCHEMA,
+  ElementRef,
+  Input,
+  numberAttribute,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { PackagesService } from '../../services/packages.service';
+import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-detail-packages',
   templateUrl: './detail-packages.component.html',
+  standalone: true,
+  imports: [CommonModule, ReactiveFormsModule, RouterLink],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   styleUrls: ['./detail-packages.component.scss'],
 })
 export class DetailPackagesComponent implements OnInit {

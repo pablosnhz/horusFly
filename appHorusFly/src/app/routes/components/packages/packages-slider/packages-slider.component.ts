@@ -1,9 +1,14 @@
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { PackagesService } from '../../services/packages.service';
+import { RouterLink } from '@angular/router';
+import { CurrencyPipe } from '@angular/common';
 
 @Component({
   selector: 'app-packages-slider',
   templateUrl: './packages-slider.component.html',
+  standalone: true,
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  imports: [RouterLink, CurrencyPipe],
   styleUrls: ['./packages-slider.component.scss'],
 })
 export class PackagesSliderComponent implements OnInit {

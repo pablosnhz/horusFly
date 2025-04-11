@@ -1,11 +1,24 @@
-import { Component, ElementRef, Input, numberAttribute, OnInit, ViewChild } from '@angular/core';
+import {
+  Component,
+  CUSTOM_ELEMENTS_SCHEMA,
+  ElementRef,
+  Input,
+  numberAttribute,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { AccomodationsService } from '../../services/accomodations.service';
+import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-detail-hotel',
   templateUrl: './detail-hotel.component.html',
   styleUrls: ['./detail-hotel.component.scss'],
+  standalone: true,
+  imports: [CommonModule, RouterLink],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class DetailHotelComponent implements OnInit {
   @Input({ transform: numberAttribute }) idHotels!: number;

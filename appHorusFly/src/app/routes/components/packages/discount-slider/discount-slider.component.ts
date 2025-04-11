@@ -1,9 +1,14 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { PackagesService } from '../../services/packages.service';
+import { RouterLink } from '@angular/router';
+import { CurrencyPipe } from '@angular/common';
 
 @Component({
   selector: 'app-discount-slider',
   templateUrl: './discount-slider.component.html',
+  standalone: true,
+  imports: [RouterLink, CurrencyPipe],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   styleUrls: ['./discount-slider.component.scss'],
 })
 export class DiscountSliderComponent implements OnInit {
