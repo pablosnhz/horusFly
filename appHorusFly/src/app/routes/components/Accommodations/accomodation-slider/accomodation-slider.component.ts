@@ -1,4 +1,4 @@
-import { Component, OnInit, Signal } from '@angular/core';
+import { Component, inject, OnInit, Signal } from '@angular/core';
 import { AccomodationsService } from '../../services/accomodations.service';
 import { CommonModule } from '@angular/common';
 import { SpinnerComponent } from 'src/app/shared/pages/spinner/spinner.component';
@@ -13,10 +13,10 @@ import { RouterLink } from '@angular/router';
   imports: [CommonModule, SpinnerComponent, RatingDirective, RouterLink],
 })
 export class AccomodationSliderComponent implements OnInit {
+  acService = inject(AccomodationsService);
+
   $loading: Signal<boolean> = this.acService.$loading;
   resultsFilters = this.acService.resultsFilters;
-
-  constructor(private acService: AccomodationsService) {}
 
   ngOnInit(): void {
     this.acService.getInfoHotel().subscribe();

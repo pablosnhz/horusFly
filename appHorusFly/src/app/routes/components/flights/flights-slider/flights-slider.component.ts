@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { SpinnerComponent } from 'src/app/shared/pages/spinner/spinner.component';
 import { RouterLink } from '@angular/router';
+import { IFlights } from 'src/app/core/models/flights';
 @Component({
   selector: 'app-flights-slider',
   templateUrl: './flights-slider.component.html',
@@ -18,7 +19,7 @@ export class FlightsSliderComponent {
   $loadingFlights: Signal<boolean> = this.flightsService.$loading;
   resultsFiltersFly = this.flightsService.resultsFiltersFlights;
 
-  data: Signal<any[]> = toSignal(
+  data: Signal<IFlights[]> = toSignal(
     this.flightsService.getDatosFlights().pipe(map((response) => response.value || [])),
     { initialValue: [] },
   );

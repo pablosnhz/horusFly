@@ -1,12 +1,14 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, signal, WritableSignal } from '@angular/core';
+import { inject, Injectable, signal, WritableSignal } from '@angular/core';
 import { BehaviorSubject, delay, finalize, map, Observable, tap } from 'rxjs';
+import { IAccommodationsFilters } from 'src/app/core/models/accommodations';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AccomodationsService {
+  http = inject(HttpClient);
   $loading: WritableSignal<boolean> = signal(false);
   private filterSubject = new BehaviorSubject<any>({});
   filter$ = this.filterSubject.asObservable();
@@ -15,13 +17,12 @@ export class AccomodationsService {
 
   allHotels: any[] = [];
 
-  constructor(private http: HttpClient) {}
-
   getInfoHotel(): Observable<any> {
     this.$loading.set(true);
     return this.http.get<any>(`${environment.apiEndpoints.url}api/hotel/list`).pipe(
       tap((response) => {
         this.allHotels = response;
+        console.log(`datos`, response);
       }),
       finalize(() => this.$loading.set(false)),
     );
@@ -31,7 +32,7 @@ export class AccomodationsService {
     this.filterSubject.next(filters);
   }
 
-  filterHotel$(filters: any): Observable<any[]> {
+  filterHotel$(filters: IAccommodationsFilters): Observable<any[]> {
     return this.getInfoHotel().pipe(
       map((data) => {
         const hotel = Array.isArray(data) ? data : data.value || [];

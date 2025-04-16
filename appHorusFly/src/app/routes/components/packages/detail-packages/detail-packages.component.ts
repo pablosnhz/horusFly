@@ -2,6 +2,7 @@ import {
   Component,
   CUSTOM_ELEMENTS_SCHEMA,
   ElementRef,
+  inject,
   Input,
   numberAttribute,
   OnInit,
@@ -22,6 +23,8 @@ import { RouterLink } from '@angular/router';
   styleUrls: ['./detail-packages.component.scss'],
 })
 export class DetailPackagesComponent implements OnInit {
+  packageService = inject(PackagesService);
+
   @Input({ transform: numberAttribute }) idPackages!: number;
   @Input({ transform: numberAttribute }) idCombo!: number;
   @Input({ transform: numberAttribute }) idDiscount!: number;
@@ -29,8 +32,6 @@ export class DetailPackagesComponent implements OnInit {
   infoDiscount$!: Observable<any>;
   infoPackage$!: Observable<any>;
   infoCombo$!: Observable<any>;
-
-  constructor(private packageService: PackagesService) {}
 
   ngOnInit(): void {
     this.infoDiscount$ = this.packageService
