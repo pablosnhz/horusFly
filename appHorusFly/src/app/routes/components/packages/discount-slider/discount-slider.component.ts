@@ -1,4 +1,11 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA, ElementRef, OnInit, ViewChild } from '@angular/core';
+import {
+  Component,
+  CUSTOM_ELEMENTS_SCHEMA,
+  ElementRef,
+  inject,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { PackagesService } from '../../services/packages.service';
 import { RouterLink } from '@angular/router';
 import { CurrencyPipe } from '@angular/common';
@@ -12,9 +19,8 @@ import { CurrencyPipe } from '@angular/common';
   styleUrls: ['./discount-slider.component.scss'],
 })
 export class DiscountSliderComponent implements OnInit {
+  comboService = inject(PackagesService);
   datosDiscount: any;
-
-  constructor(private comboService: PackagesService) {}
 
   ngOnInit(): void {
     this.datosPackages();

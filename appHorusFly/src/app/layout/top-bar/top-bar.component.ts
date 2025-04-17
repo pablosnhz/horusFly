@@ -1,4 +1,4 @@
-import { Component, OnInit, Signal } from '@angular/core';
+import { Component, inject, OnInit, Signal } from '@angular/core';
 import { Router, RouterLink, RouterModule } from '@angular/router';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
 
@@ -10,27 +10,33 @@ import { AuthService } from 'src/app/core/services/auth/auth.service';
   standalone: true,
 })
 export class TopBarComponent implements OnInit {
+  authService = inject(AuthService);
+  router = inject(Router);
+
   detailRoute = false;
   $user: Signal<null> = this.authService.$user;
   $userName: Signal<null> = this.authService.$userName;
 
-  constructor(
-    private router: Router,
-    private authService: AuthService,
-  ) {
-    this.router.events.subscribe(() => {
-      this.detailRoute =
-        this.router.url.includes('/details') ||
-        this.router.url.includes('/checkout') ||
-        this.router.url.startsWith('/accommodation/') ||
-        this.router.url.includes('/packages/') ||
-        this.router.url.includes('auth/profile');
-    });
-  }
   ngOnInit(): void {
+    this.detailRoute = this.checkDetailRoute(this.router.url);
+
+    this.router.events.subscribe(() => {
+      this.detailRoute = this.checkDetailRoute(this.router.url);
+    });
+
     if (this.authService.$user()) {
       this.authService.getUser();
     }
+  }
+
+  private checkDetailRoute(url: string): boolean {
+    return (
+      url.includes('/details') ||
+      url.includes('/checkout') ||
+      url.startsWith('/accommodation/') ||
+      url.includes('/packages/') ||
+      url.includes('auth/profile')
+    );
   }
 
   logout() {

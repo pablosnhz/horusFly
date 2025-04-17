@@ -12,6 +12,7 @@ import { AccomodationsService } from '../../services/accomodations.service';
 import { FlightsService } from '../../services/flights.service';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { IFlights } from 'src/app/core/models/flights';
 
 @Component({
   selector: 'app-checkout-flights',
@@ -23,7 +24,7 @@ import { RouterLink } from '@angular/router';
 export class CheckoutFlightsComponent implements OnInit {
   @Input({ transform: numberAttribute }) idFlights!: number;
 
-  infoFlights$!: Observable<any>;
+  infoFlights$!: Observable<IFlights>;
   $user = this.authService.$user;
   dataIn!: string;
   dataOut!: string;
